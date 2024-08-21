@@ -12,6 +12,7 @@
     <div class="container">
       <h1 class="my-4">Library Inventory</h1>
       <nav class="mb-4">
+        <a class="btn btn-primary" href="{{ url_for('index') }}">Home</a>
         <a class="btn btn-primary" href="{{ url_for('add_book') }}">Add Book</a>
         <a class="btn btn-warning" href="{{ url_for('borrow_book') }}">Borrow Book</a>
         <a class="btn btn-success" href="{{ url_for('return_book') }}">Return Book</a>

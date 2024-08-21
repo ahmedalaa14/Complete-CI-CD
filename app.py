@@ -92,6 +92,7 @@ def search_book():
         books = [
             book for book in data['books'] 
             if title.lower() in book['title'].lower()
+            # if book['title'].lower().startswith(title.lower())
         ]
         if not books:
             flash('No books found!')
