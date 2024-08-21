@@ -1,36 +1,31 @@
-FROM python:alpine
+# Build stage
+FROM python:3.9-alpine AS build
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt /usr/src/app
+# Install build dependencies
+RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev
 
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /usr/src/app
+# Copy the application code
+COPY . .
+
+# Production stage
+FROM python:3.9-alpine AS prod
+
+WORKDIR /usr/src/app
+
+# Copy only necessary files from the build stage
+COPY --from=build /usr/src/app /usr/src/app
+
+
+# Run as non-root user for security
+RUN adduser -D ahmed
+USER ahmed
 
 EXPOSE 5000
 
 CMD ["python3", "app.py", "runserver", "0.0.0.0:5000"]
-
-
-# Build stage
-# FROM python:alpine AS build
-
-# WORKDIR /usr/src/app
-
-# COPY requirements.txt /usr/src/app
-
-# RUN pip install --no-cache-dir -r requirements.txt
-
-# COPY . /usr/src/app
-
-# Production stage
-# FROM python:alpine AS prod
-
-#WORKDIR /usr/src/app
-
-#COPY --from=build /usr/src/app /usr/src/app
-
-#EXPOSE 5000
-
-# CMD ["python3", "app.py", "runserver", "0.0.0.0:5000"]
