@@ -20,13 +20,13 @@ spec:
         ports:
         - containerPort: 5000
         volumeMounts:
-        - name: python-app-pvc
-          mountPath: /data
+        - name: python-app-pv
+          mountPath: /app/data
         resources:
           limits:
             cpu: "1"
             memory: "512Mi"
       volumes:
-      - name: python-app-pvc
+      - name: python-app-pv
         persistentVolumeClaim:
           claimName: python-app-pvc
