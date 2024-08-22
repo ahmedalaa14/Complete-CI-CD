@@ -21,7 +21,7 @@ spec:
         - containerPort: 5000
         volumeMounts:
         - name: python-app-pv
-          mountPath: /app/data
+          mountPath: /app
         resources:
           limits:
             cpu: "1"
