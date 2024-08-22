@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: python-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-app
+        image: flask-app-min:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
