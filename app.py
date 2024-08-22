@@ -7,6 +7,7 @@ app.secret_key = "dasdasdgajksdgahskjdgasdgkahkas"
 
 DataBase = 'data/library.json'
 
+
 def load_data():
     """Load the database file and return its content. If file doesn't exist, return default data."""
     if not os.path.exists(DataBase):
