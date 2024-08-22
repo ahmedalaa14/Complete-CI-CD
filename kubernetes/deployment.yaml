@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: flask-app-min:latest
+        image: ahmedalaa14/flask-app-mini
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
