@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-app
+        image: flask-app-min:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: python-app-pvc
+          mountPath: /data
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+      volumes:
+      - name: python-app-pvc
+        persistentVolumeClaim:
+          claimName: python-app-pvc
