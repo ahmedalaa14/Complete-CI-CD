@@ -1,7 +1,7 @@
 # Build stage
 FROM python:3.9-alpine AS build
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install build dependencies
 RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev
@@ -16,10 +16,10 @@ COPY . .
 # Production stage
 FROM python:3.9-alpine AS prod
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copy only necessary files from the build stage
-COPY --from=build /usr/src/app /usr/src/app
+COPY --from=build /app /app
 
 
 # Run as non-root user for security
