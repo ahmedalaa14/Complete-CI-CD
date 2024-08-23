@@ -4,7 +4,7 @@ metadata:
   name: python-app
   namespace: library
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: python-app
@@ -21,7 +21,7 @@ spec:
         - containerPort: 5000
         volumeMounts:
         - name: python-app-pv
-          mountPath: /app
+          mountPath: /app/data
         resources:
           limits:
             cpu: "1"
