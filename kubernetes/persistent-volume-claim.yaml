@@ -8,5 +8,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
-      storageClassName: ""  # This is the default storage class
+      storage: "1Gi"
+  storageClassName: ""  # This is the default storage class
