@@ -75,4 +75,4 @@ Used to containerize the application
 - the benefits of that are Smaller Image Size, Faster Deployments, Improved Security and Better Caching.
 
 ![Docker Image Before Multi Stage Dockerfile](<images/dockerImage- before multistage.png>)
-![Docker Image After Multi Stage Dockerfile](dockerImage-minimize.png)
+![Docker Image After Multi Stage Dockerfile](<images/dockerImage- minimize.png>)
