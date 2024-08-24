@@ -46,7 +46,7 @@ To run the application on your local machine:
    Open your browser and navigate to `http://localhost:5000`.
 
 ## Docker
-Used to containerize the application
+- Used to containerize the application
 
 1. **Build the Docker image**:
 
@@ -142,7 +142,7 @@ docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
 
 ## Directory Structure
 
-The `kubernetes/` directory contains the following YAML files:
+- The `kubernetes/` directory contains the following YAML files:
 
 ```plaintext
 kubernetes/
@@ -155,7 +155,7 @@ kubernetes/
 
 ## Applying the Manifests
 
-To apply all the Kubernetes manifests in the `kubernetes/` directory, run the following command:
+- To apply all the Kubernetes manifests in the `kubernetes/` directory, run the following command:
 
 ```bash
 kubectl apply -f kubernetes/
