@@ -44,3 +44,35 @@ To run the application on your local machine:
 2. **Access the application**:
 
    Open your browser and navigate to `http://localhost:5000`.
+
+
+## Docker
+Used to containerize the application
+
+1. **Build the Docker image**:
+
+   ```bash
+   docker build -t ahmedalaa14/flask-app-mini .
+   ```
+
+2. **Run the Docker container**:
+
+   ```bash
+   docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
+   ```
+3. **Push Docker Image to DockerHub**
+
+   ```bash
+   docker push ahmedalaa14/flask-app-mini
+   ```
+
+4. **Access the application**:
+
+   Open your browser and navigate to `http://localhost:5000`.
+
+## Bouns In Docker 
+- we created a multi-stage dockerfile contains build stage and production stage.
+- the benefits of that are Smaller Image Size, Faster Deployments, Improved Security and Better Caching.
+
+![Docker Image Before Multi Stage Dockerfile](<images/dockerImage- before multistage.png>)
+![Docker Image After Multi Stage Dockerfile](dockerImage-minimize.png)
