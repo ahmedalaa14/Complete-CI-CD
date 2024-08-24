@@ -44,3 +44,65 @@ To run the application on your local machine:
 2. **Access the application**:
 
    Open your browser and navigate to `http://localhost:5000`.
+
+## Docker
+Used to containerize the application
+
+1. **Build the Docker image**:
+
+   ```bash
+   docker build -t ahmedalaa14/flask-app-mini .
+   ```
+
+2. **Run the Docker container**:
+
+   ```bash
+   docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
+   ```
+3. **Push Docker Image to DockerHub**
+
+   ```bash
+   docker push ahmedalaa14/flask-app-mini
+   ```
+
+4. **Access the application**:
+
+   Open your browser and navigate to `http://localhost:5000`.
+
+## Bouns In Docker 
+- we created a multi-stage dockerfile contains build stage and production stage.
+- the benefits of that are Smaller Image Size, Faster Deployments, Improved Security and Better Caching.
+
+![Docker Image Before Multi Stage Dockerfile](<images/dockerImage- before multistage.png>)
+![Docker Image After Multi Stage Dockerfile](<images/dockerImage- minimize.png>)
+
+## Ansible
+- created `playbook.yml` to automate the workflow of building, tagging, pushing Docker images to DockerHub, and deploying a container from the image.
+```yaml
+---
+- name: "Automate Docker Build using Ansible"
+  hosts: localhost
+  tasks:
+  - name: stop running container 
+    command: docker stop python-app
+    ignore_errors: true
+
+  - name: remove stopped container 
+    command: docker rm python-app
+    ignore_errors: true
+
+
+  - name: remove used image 
+    command: docker rmi ahmedalaa14/flask-app-mini
+    ignore_errors: true
+
+  - name: build new image 
+    command: docker build -t ahmedalaa14/flask-app-mini .
+
+  - name: push docker image  
+    command: docker push ahmedalaa14/flask-app-mini
+
+
+  - name: run new container
+    command: docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
+```    
