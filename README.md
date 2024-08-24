@@ -76,3 +76,44 @@ Used to containerize the application
 
 ![Docker Image Before Multi Stage Dockerfile](<images/dockerImage- before multistage.png>)
 ![Docker Image After Multi Stage Dockerfile](<images/dockerImage- minimize.png>)
+
+## Ansible
+- created `playbook.yml` to automate the workflow of building, tagging, pushing Docker images to DockerHub, and deploying a container from the image.
+```yaml
+---
+- name: "Automate Docker Build using Ansible"
+  hosts: localhost
+  tasks:
+  - name: stop running container 
+    command: docker stop python-app
+    ignore_errors: true
+
+  - name: remove stopped container 
+    command: docker rm python-app
+    ignore_errors: true
+
+
+  - name: remove used image 
+    command: docker rmi ahmedalaa14/flask-app-mini
+    ignore_errors: true
+
+  - name: build new image 
+    command: docker build -t ahmedalaa14/flask-app-mini .
+
+  - name: push docker image  
+    command: docker push ahmedalaa14/flask-app-mini
+
+
+  - name: run new container
+    command: docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
+```    
+
+
+
+
+
+
+
+
+
+```
