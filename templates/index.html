@@ -36,9 +36,9 @@
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <i class="fas fa-book"></i> {{ book.title }} borrowed by {{ book.borrower }}
           <div>
-            <form method="POST" action="{{ url_for('remove_book') }}" class="d-inline">
+            <form method="POST" action="{{ url_for('remove_book_borrowed') }}" class="d-inline">
               <input type="hidden" name="title" value="{{ book.title }}">
-              <button class="btn btn-danger btn-sm" type="submit">Remove</button>
+              <button class="btn btn-danger btn-sm" type="submit">Return</button>
             </form>
           </div>
         </li>

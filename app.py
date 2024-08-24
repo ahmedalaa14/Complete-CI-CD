@@ -81,6 +81,22 @@ def remove_book():
         return redirect(url_for('index'))
     return render_template('remove_book.html')
 
+@app.route('/remove_book_borrowed', methods=['GET', 'POST'])
+def remove_book_borrowed():
+    """Handle the removal of borrowed books."""
+    if request.method == 'POST':
+        title = request.form['title']
+        data = load_data()
+        book = next((book for book in data['borrowed_books'] if book['title'] == title), None)
+        if not book:
+            abort(404, description="Book not found")
+        data['borrowed_books'].remove(book)
+        data['books'].append(book)
+        save_data(data)
+        flash('Book removed successfully!')
+        return redirect(url_for('index'))
+    return render_template('remove_book.html')
+
 @app.route('/search_book', methods=['GET', 'POST'])
 def search_book():
     """Handle searching for books by title."""
