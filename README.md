@@ -133,7 +133,7 @@ docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
 ```
 # Kubernetes Deployment
 
-This project contains Kubernetes manifests for deploying our application. The manifests are located in the `kubernetes/` directory and include resources such as Deployment, Service, Ingress , presistent-volume and persistent-volume-claim.
+- This project contains Kubernetes manifests for deploying our application. The manifests are located in the `kubernetes/` directory and include resources such as Deployment, Service, Ingress , presistent-volume and persistent-volume-claim.
 
 ## Prerequisites
 
