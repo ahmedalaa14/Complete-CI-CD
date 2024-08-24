@@ -107,13 +107,3 @@ Used to containerize the application
   - name: run new container
     command: docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
 ```    
-
-
-
-
-
-
-
-
-
-```
