@@ -5,10 +5,6 @@
             "author": "hazem"
         },
         {
-            "title": "ahmedbook",
-            "author": "ahmed"
-        },
-        {
             "title": "kdsngfgk",
             "author": "nbkn bgmkd"
         },
@@ -17,5 +13,11 @@
             "author": "wasil"
         }
     ],
-    "borrowed_books": []
+    "borrowed_books": [
+        {
+            "title": "ahmedbook",
+            "author": "ahmed",
+            "borrower": "ahmed"
+        }
+    ]
 }
