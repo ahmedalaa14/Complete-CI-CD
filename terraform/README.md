@@ -27,10 +27,10 @@ git clone https://github.com/ahmedalaa14/Complete-CI-CD.git
 ```
 terraform init
 ```
-5. Deploy the infrastructure:
+3. Deploy the infrastructure:
 ```
 terraform apply
 ```
-5. Destroy the infrastructure (when done):
+4. Destroy the infrastructure (when done):
 ```
 terraform destroy
