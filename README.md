@@ -172,15 +172,15 @@ kubectl apply -f kubernetes/
 
 ### EC2 Module
 
-The EC2 module creates an EC2 instance to host Jenkins.
+- The EC2 module creates an EC2 instance to host Jenkins.
 
 ### EKS Module
 
-The EKS module creates an Amazon Elastic Kubernetes Service (EKS) cluster with worker nodes.
+- The EKS module creates an Amazon Elastic Kubernetes Service (EKS) cluster with worker nodes.
 
 ### VPC Module
 
-The VPC module creates a network infrastructure such as subnets, NAT, IGW, and Route Table.
+- The VPC module creates a network infrastructure such as subnets, NAT, IGW, and Route Table.
 ## Usage
 
 1. Clone the repository:
