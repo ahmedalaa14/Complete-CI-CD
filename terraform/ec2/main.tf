@@ -71,6 +71,8 @@ resource "aws_instance" "jenkins_ec2" {
   security_groups             = [aws_security_group.sg.id]
   associate_public_ip_address = true
   key_name                    = "team6-key"
+  iam_instance_profile        = var.instance_profile
+
   tags = {
       Name = "jenkins_EC2"
     } 
