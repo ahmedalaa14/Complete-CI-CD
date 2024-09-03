@@ -165,7 +165,7 @@ kubectl apply -f kubernetes/
 
 # Terraform Infrastructure Deployment 
 
-> This document provides detailed instructions for deploying infrastructure using Terraform. I have created four modules in this project: `ec2`, `eks`, and `vpc`. The goal is to create an environment that includes an EC2 instance for Jenkins, an EKS cluster with worker nodes, and a network infrastructure with subnets and NAT gateways.
+- This document provides detailed instructions for deploying infrastructure using Terraform. I have created Three modules in this project: `ec2`, `eks`, and `vpc`. The goal is to create an environment that includes an EC2 instance for Jenkins, an EKS cluster with worker nodes, and a network infrastructure with subnets and NAT gateways.
 
 
 ## Modules Overview
