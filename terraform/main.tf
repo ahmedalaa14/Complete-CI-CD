@@ -20,6 +20,6 @@ module "ec2" {
 
 module "eks" {
   source               = "./modules/eks"
-  eni_subnet_ids       = module.network.private_subnets_id
-  nodegroup_subnets_id = module.network.private_subnets_id
+  eni_subnet_ids       = module.vpc.private_subnets_id
+  nodegroup_subnets_id = module.vpc.private_subnets_id
 }
