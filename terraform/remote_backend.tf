@@ -22,12 +22,12 @@ resource "aws_dynamodb_table" "terraform_locks" {
   }
 }
 
- terraform {
-     backend "s3" {
-         bucket         = "team6-remote-statefile"
-         key            = "terraform.tfstate"
-         region         = "eu-north-1"
-         dynamodb_table = "team6-locks"
-         encrypt        = true
-     }
- }
+terraform {
+  backend "s3" {
+    bucket         = "team6-remote-statefile"
+    key            = "terraform.tfstate"
+    region         = "eu-north-1"
+    dynamodb_table = "team6-locks"
+    encrypt        = true
+  }
+}
