@@ -1,3 +1,4 @@
+# Purpose: Define the variables that will be used in the VPC module
 variable "vpc_cidr" { 
     description = "VPC CIDR"
     type = string 
