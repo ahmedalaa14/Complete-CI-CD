@@ -15,7 +15,7 @@ The EKS module creates an Amazon Elastic Kubernetes Service (EKS) cluster with w
 
 ### [VPC Module]
 
-The VPC module creates a network infrastructure such as subnets, NAT, IGW, and so on .
+The VPC module creates a network infrastructure such as subnets, NAT, IGW, and Route Table .
 
 ## Usage
 
