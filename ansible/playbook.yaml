@@ -2,7 +2,11 @@
   hosts: jenkins-ec2
   become: true
   roles:
-    - jenkins
-    - awscli
-    - kubectl
+    - common
     - docker
+    - awscli
+    - kubernetes
+    - terraform
+    - trivy
+    - jenkins
+    - permissions
