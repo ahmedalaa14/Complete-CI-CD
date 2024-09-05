@@ -66,7 +66,7 @@ resource "aws_security_group" "sg" {
 # EC2 instance
 resource "aws_instance" "jenkins_ec2" {
   ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t3.micro"
+  instance_type               = "t3.medium"
   subnet_id                   = var.ec2_subnet_id    
   security_groups             = [aws_security_group.sg.id]
   associate_public_ip_address = true
