@@ -1,0 +1,58 @@
+---
+- name: Create necessary groups
+  group:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - docker
+    - awscli
+    - terraform
+    - kubectl
+    - trivy
+
+- name: Add Jenkins user to groups
+  user:
+    name: jenkins
+    groups: docker,awscli,terraform,kubectl,trivy
+    append: yes
+
+- name: Set permissions for Docker
+  file:
+    path: /usr/bin/docker
+    group: docker
+    mode: '0755'
+
+- name: Set permissions for AWS CLI
+  file:
+    path: /usr/local/bin/aws
+    group: awscli
+    mode: '0755'
+
+- name: Set permissions for Terraform
+  file:
+    path: /usr/bin/terraform
+    group: terraform
+    mode: '0755'
+
+- name: Set permissions for kubectl
+  file:
+    path: /usr/local/bin/kubectl
+    group: kubectl
+    mode: '0755'
+
+- name: Set permissions for Trivy
+  file:
+    path: /usr/bin/trivy
+    group: trivy
+    mode: '0755'
+
+- name: Record paths of installed tools
+  shell: |
+    echo "Terraform: $(which terraform)" > /home/ubuntu/ahmed.txt
+    echo "AWS CLI: $(which aws)" >> /home/ubuntu/ahmed.txt
+    echo "kubectl: $(which kubectl)" >> /home/ubuntu/ahmed.txt
+    echo "Trivy: $(which trivy)" >> /home/ubuntu/ahmed.txt
+    echo "Jenkins: $(which jenkins)" >> /home/ubuntu/ahmed.txt
+    echo "Jenkins initialAdminPassword: $(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)" >> /home/ubuntu/ahmed.txt
+  args:
+    executable: /bin/bash
