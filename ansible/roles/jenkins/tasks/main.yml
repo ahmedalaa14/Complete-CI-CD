@@ -1,37 +1,30 @@
 ---
-# update apt package
-    - name: Update apt cache 
-      apt:
-        update_cache: yes
+- name: Add Jenkins GPG key
+  get_url:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    dest: /usr/share/keyrings/jenkins-keyring.asc
 
-# install java 
-    - name: Install OpenJDK 
-      apt:
-        name: openjdk-11-jdk
-        state: present
+- name: Add Jenkins repository
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/
+    state: present
 
-# jenkins installation
-    - name: ensure the jenkins apt repository key is installed
-      apt_key: url=https://pkg.jenkins.io/debian/jenkins.io-2023.key state=present
+- name: Install Jenkins and Java
+  apt:
+    name:
+      - openjdk-17-jre
+      - jenkins
+    state: present
 
-    - name: ensure the repository is configured
-      apt_repository:
-        repo: 'deb https://pkg.jenkins.io/debian-stable binary/' 
-        state: present
+- name: Configure Jenkins to use custom port
+  lineinfile:
+    path: /etc/default/jenkins
+    regexp: '^JENKINS_PORT='
+    line: 'JENKINS_PORT=8080'  # Change this port to whatever you want
+    state: present
 
-    - name: ensure jenkins is installed
-      apt: 
-        name: jenkins 
-        update_cache: yes
-      become: true
-
-# get jenkins initial password in initialAdminPassword
-    - name: Fetch Jenkins password
-      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-      changed_when: false
-      register: jenkins_initial_password
-
-# print jenkins initial password
-    - name: print jenkins password
-      debug:
-        var: jenkins_initial_password.stdout
+- name: Ensure Jenkins service is running and enabled
+  systemd:
+    name: jenkins
+    enabled: yes
+    state: restarted
