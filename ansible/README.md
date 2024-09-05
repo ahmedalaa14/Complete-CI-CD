@@ -1,58 +1,126 @@
-# Ansible Playbook
+# Jenkins EC2 Instance Setup with Ansible
 
-- This document provides an overview of the Ansible playbook for installing and configuring Jenkins on an EC2 instance, along with additional roles for AWS CLI, kubectl, and Docker.
+This project automates the setup of Jenkins and several DevOps tools on an EC2 instance using Ansible. The setup includes Docker, AWS CLI, Kubernetes, Terraform, Trivy, and Jenkins, with role-based permission configuration.
 
-## Playbook Overview
+## Project Overview
 
-The Ansible playbook performs the following tasks:
+The Ansible playbook automates the following tasks:
 
-1. **Install Jenkins:** Installs Jenkins on the EC2 instance and fetches the initialAdminPassword.
+- **Installing and configuring Jenkins** on an EC2 instance.
+- **Installing Docker** and enabling it to manage containers.
+- **Installing AWS CLI** for cloud operations.
+- **Installing Kubernetes tools (kubectl)** for managing K8s clusters.
+- **Installing Terraform** for infrastructure as code.
+- **Installing Trivy** for container image scanning.
+- **Configuring permissions** for Jenkins and other tools.
 
-2. **Install AWS CLI:** Installs AWS CLI for interacting with AWS services.
+Roles are modular and reusable, making the setup scalable and adaptable to different environments.
 
-3. **Configure AWS credentials:** Configures AWS credentials and region for the `default` profile.
+## Roles
 
-4. **Install kubectl:** Installs kubectl to interact with an EKS cluster.
+This playbook utilizes the following Ansible roles:
 
-5. **configure cluster credentials:** configure EKS credentials (.kube/config)
+### 1. Common
 
-6. **Install Docker:** Installs Docker on the EC2 instance and configures Jenkins to use Docker.
+- **Purpose**: Ensures the EC2 instance is updated and all necessary system utilities are installed.
+- **Tasks**:
+  - Updating package repositories.
+  - Installing common utilities like unzip, wget, etc.
 
-## Role Details
+### 2. Docker
 
-### jenkins Role
+- **Purpose**: Installs Docker and ensures the Docker service is running.
+- **Tasks**:
+  - Installing Docker CE.
+  - Enabling and starting the Docker service.
+  - Adding the Jenkins user to the Docker group to allow Jenkins to manage containers.
 
-- Updates APT cache.
-- Installs OpenJDK 11.
-- Configures Jenkins repository and installs Jenkins.
-- Fetches Jenkins initialAdminPassword and prints it.
+### 3. AWS CLI
 
-### awscli Role
+- **Purpose**: Installs and configures AWS CLI for cloud resource management.
+- **Tasks**:
+  - Installing AWS CLI version 2.
+  - Configuring access credentials (optional, based on environment variables).
 
-- Installs unzip package on Ubuntu.
-- Downloads and installs AWS CLI.
-- Configures AWS credentials using `aws configure`.
+### 4. Kubernetes
 
-### kubectl Role
-- Installs kubectl for interacting with Kubernetes clusters.
-- Configures Kubernetes cluster credentials using `aws eks update-kubeconfig`.
+- **Purpose**: Installs kubectl for managing Kubernetes clusters.
+- **Tasks**:
+  - Downloading and installing the kubectl binary.
+  - Configuring Kubernetes contexts (optional).
 
-### docker Role
+### 5. Terraform
 
-- Installs Docker on the EC2 instance.
-- Adds the Jenkins user to the Docker group.
-- Adjusts ownership and permissions of `/var/run/docker.sock`.
-- Restarts Jenkins and Docker services.
+- **Purpose**: Installs Terraform for managing infrastructure as code.
+- **Tasks**:
+  - Installing Terraform.
+  - Configuring the environment for Terraform use (optional).
 
-## Usage
+### 6. Trivy
 
-1. Ensure you have Ansible installed on your local machine.
-2. Update variables (e.g., `aws_access_key`, `aws_secret_key`, `aws_region`, `cluster_name`) in your playbook as needed.
-3. Run the playbook using the following command:
+- **Purpose**: Installs Trivy for container image scanning.
+- **Tasks**:
+  - Installing Trivy.
+  - Running initial container image scans (optional).
 
+### 7. Jenkins
+
+- **Purpose**: Installs Jenkins and sets it up for use in a CI/CD pipeline.
+- **Tasks**:
+  - Installing Jenkins.
+  - Configuring Jenkins to run on a specific port.
+  - Setting up initial Jenkins plugins and user configuration.
+  - Managing the Jenkins service.
+
+### 8. Permissions
+
+- **Purpose**: Configures permissions for Jenkins and other tools for seamless integration.
+- **Tasks**:
+  - Adding Jenkins to required groups (e.g., Docker, Kubernetes, Terraform).
+  - Ensuring proper file and directory permissions for all installed tools.
+
+## Prerequisites
+
+Before running the playbook, ensure the following are in place:
+
+- Ansible is installed on the control machine.
+- SSH access to the target EC2 instance is set up (the `jenkins-ec2` host group should be defined in your Ansible inventory).
+- AWS credentials are available if AWS CLI operations are required.
+- EC2 instance should have sufficient permissions for installing software.
+
+## How to Use
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/ahmedalaa14/Comlete-CI-CD.git
+cd ansible
 ```
-ansible-playbook -i <inventory-file> <playbook-name>.yml
-```
-Replace <inventory-file> with your inventory file and <playbook-name> with the name of your playbook.
 
-The playbook will execute the specified tasks on the target EC2 instance.
+# Jenkins EC2 Provisioning
+
+## Update the Inventory
+
+To provision an EC2 instance with Jenkins, you'll need to update your inventory file to include the EC2 instance under the `jenkins-ec2` host group. Modify your inventory file as follows:
+
+```bash
+[jenkins-ec2]
+ec2-instance-ip ansible_user=ubuntu ansible_ssh_private_key_file=path-to-your-key.pem
+Replace ec2-instance-ip with the actual IP address of your EC2 instance, and path-to-your-key.pem with the path to your SSH private key file.
+```
+## Run the Playbook
+- After updating the inventory file, run the Ansible playbook to provision the EC2 instance with Jenkins and related tools:
+
+
+```bash
+ansible-playbook -i inventory playbook.yml
+This command will execute the playbook defined in site.yml and set up Jenkins on the EC2 instance.
+```
+
+## Access Jenkins
+- Once the playbook has completed, you can access Jenkins by navigating to the following URL in your web browser:
+
+```bash
+http://<EC2-instance-IP>:8080
+Replace <EC2-instance-IP> with the actual IP address of your EC2 instance.
+```
