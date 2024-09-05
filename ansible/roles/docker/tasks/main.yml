@@ -1,34 +1,21 @@
-# install docker
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
+---
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
 
-# configure jenkins to use docker
-    - name: Add jenkins user to docker group
-      user:
-        name: jenkins
-        groups: docker
-        append: yes
+- name: Add Docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
 
-# ownership of docker.sock
-    - name: Change ownership of docker.sock
-      file:
-        path: /var/run/docker.sock
-        owner: root
-        group: docker
-        state: touch
-# permissions of docker.sock
-    - name: change docker.sock file permissions
-      file:
-        path: /var/run/docker.sock
-        mode: "0666"
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: present
 
-# restart jenkins & docker
-    - name: restart jenkins & docker
-      service:
-        name: '{{ item }}'
-        state: restarted
-      loop:
-        - jenkins
-        - docker
+- name: Ensure Docker service is running and enabled
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
