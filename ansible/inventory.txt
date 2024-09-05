@@ -1,0 +1,1 @@
+jenkins-ec2 ansible_host=16.171.65.172 ansible_user=ubuntu ansible_ssh_private_key_file=/home/ahmedalaa/team6-key.pem
