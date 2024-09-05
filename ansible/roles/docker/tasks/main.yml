@@ -1,0 +1,34 @@
+# install docker
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+# configure jenkins to use docker
+    - name: Add jenkins user to docker group
+      user:
+        name: jenkins
+        groups: docker
+        append: yes
+
+# ownership of docker.sock
+    - name: Change ownership of docker.sock
+      file:
+        path: /var/run/docker.sock
+        owner: root
+        group: docker
+        state: touch
+# permissions of docker.sock
+    - name: change docker.sock file permissions
+      file:
+        path: /var/run/docker.sock
+        mode: "0666"
+
+# restart jenkins & docker
+    - name: restart jenkins & docker
+      service:
+        name: '{{ item }}'
+        state: restarted
+      loop:
+        - jenkins
+        - docker
