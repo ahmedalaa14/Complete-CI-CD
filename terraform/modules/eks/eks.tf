@@ -22,7 +22,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 
 # cluster role  
 resource "aws_iam_role" "eks_cluster_role" {
-  name               = "eks-cluster-role"
+  name               = "ahmed-eks-cluster-role"
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
