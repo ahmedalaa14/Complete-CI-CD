@@ -1,0 +1,17 @@
+---
+- name: Update and upgrade apt packages
+  apt:
+    update_cache: yes
+    upgrade: dist
+    force_apt_get: yes
+
+- name: Install common dependencies
+  apt:
+    name:
+      - unzip
+      - wget
+      - gnupg
+      - software-properties-common
+      - apt-transport-https
+      - ca-certificates
+    state: present
