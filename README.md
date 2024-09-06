@@ -72,11 +72,6 @@ To run the application on your local machine:
 
    Open your browser and navigate to `http://localhost:5000`.
 
-- Container Is Running.
-![Container Is Running](<images/Container Is Running.png>)
-   
-
-
 ## Bouns In Docker 
 - we created a multi-stage dockerfile contains build stage and production stage.
 - the benefits of that are Smaller Image Size, Faster Deployments, Improved Security and Better Caching.
