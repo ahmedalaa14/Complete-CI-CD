@@ -273,3 +273,63 @@ Replace <EC2-instance-IP> with the actual IP address of your EC2 instance.
 ```
 - Deployment Jenkins on EC2 Using Ansible 
 ![Jenkins-on-EC2-Deployment](<images/Jenkins-on-EC2-Deployment.png>)
+
+
+# Monitoring (Bonus)
+
+- Prometheus and Grafana Deployment.
+
+# Architecture 
+
+- Architecture Prometheus - Grafana:
+
+![Architecture Prometheus - Grafana](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Architecture%20Prometheus%20-%20Grafana.png)
+
+## Prerequisites
+
+- Kubernetes cluster (e.g., minikube, GKE, EKS).
+- kubectl installed and configured.
+
+## Deployment
+
+- To deploy Prometheus and Grafana, follow these steps:
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/ahmedalaa14/Complete-CI-CD.git
+cd monitoring
+```
+
+2. Apply the Kubernetes manifests:
+```bash
+kubectl apply -f prometheus.yaml
+kubectl apply -f grafana.yaml
+```
+
+## Accessing the Services
+- After deployment, you can access the services as follows:
+
+Prometheus: Run 
+```bash 
+minikube service prometheus-service -n library
+``` 
+- to get the URL for Prometheus.
+Grafana: 
+Run 
+```bash 
+minikube service grafana-service -n library 
+``` 
+- to get the URL for Grafana.
+
+```bash
+aws eks update-cluster-config --region eu-north-1 --name team6-cluster
+```
+
+- Prometheus Deployment On EKS.
+
+![Promerhus Deployment](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Promethus%20Deployment.png)
+
+- Grafana Dashboard on EKS.
+
+![Grafana Dashboard](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Grafana%20Dashboard.png)
