@@ -1,0 +1,9 @@
+{
+    "books": [
+        {
+            "title": "Updated Title",
+            "author": "Updated Author"
+        }
+    ],
+    "borrowed_books": []
+}
