@@ -14,3 +14,5 @@ env/
 
 # Ignore build artifacts
 *.log
+deploy.sh
+playbook.yml
