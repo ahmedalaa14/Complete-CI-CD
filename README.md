@@ -72,6 +72,10 @@ To run the application on your local machine:
 
    Open your browser and navigate to `http://localhost:5000`.
 
+- Container Is Running.
+![Container Is Running](<images/Container Is Running.png>)
+   
+
 
 ## Bouns In Docker 
 - we created a multi-stage dockerfile contains build stage and production stage.
@@ -166,6 +170,8 @@ kubectl apply -f kubernetes/
 ```
 - This command will create the Kubernetes resources defined in the manifests, including the Deployment, Service, Ingress, Persistent Volume, and Persistent Volume Claim.
 
+- Applying Kubernetes Files.
+![Applying Kubernetes Files](<images/Applying Kubernetes Files.png>)
 
 # Terraform Infrastructure Deployment 
 
@@ -205,3 +211,6 @@ terraform destroy
 ```
 - Infrastructure-Deployment Using Terraform
 ![Infrastructure-Deployment Using Terraform](<images/Infrastructure-Deployment Using Terraform.png>)
+
+- App Deployment on Eks
+![App Deplyment on Eks](<images/App Deplyment on Eks.png>)
