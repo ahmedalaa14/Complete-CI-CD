@@ -46,6 +46,7 @@ To run the application on your local machine:
    Open your browser and navigate to `http://localhost:5000`.
 
 - It Should be like That.
+  
 ![Python App Deployment Local](<images/Python App Deployment Local.png>)   
 
 ## Docker
@@ -75,8 +76,13 @@ To run the application on your local machine:
 ## Bouns In Docker 
 - we created a multi-stage dockerfile contains build stage and production stage.
 - the benefits of that are Smaller Image Size, Faster Deployments, Improved Security and Better Caching.
-
+  
+- Docker Image Before Multi Stage Dockerfile
+  
 ![Docker Image Before Multi Stage Dockerfile](<images/dockerImage- before multistage.png>)
+
+Docker Image After Multi Stage Dockerfile
+
 ![Docker Image After Multi Stage Dockerfile](<images/dockerImage- minimize.png>)
 
 ## Ansible (Bonus)
@@ -166,6 +172,7 @@ kubectl apply -f kubernetes/
 - This command will create the Kubernetes resources defined in the manifests, including the Deployment, Service, Ingress, Persistent Volume, and Persistent Volume Claim.
 
 - Applying Kubernetes Files.
+
 ![Applying Kubernetes Files](<images/Applying Kubernetes Files.png>)
 
 # Terraform Infrastructure Deployment 
@@ -208,6 +215,7 @@ terraform destroy
 ![Infrastructure-Deployment Using Terraform](<images/Infrastructure-Deployment Using Terraform.png>)
 
 - App Deployment on EKS.
+  
 ![App Deplyment on Eks](<images/App Deplyment on Eks.png>)
 
 # Jenkins EC2 Instance Setup with Ansible (Bonus)
@@ -271,7 +279,8 @@ This command will execute the playbook defined in palybook.yml and set up Jenkin
 http://<EC2-instance-IP>:8080
 Replace <EC2-instance-IP> with the actual IP address of your EC2 instance.
 ```
-- Deployment Jenkins on EC2 Using Ansible 
+- Deployment Jenkins on EC2 Using Ansible
+  
 ![Jenkins-on-EC2-Deployment](<images/Jenkins-on-EC2-Deployment.png>)
 
 
