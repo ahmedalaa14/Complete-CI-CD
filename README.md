@@ -207,7 +207,7 @@ terraform destroy
 - Infrastructure-Deployment Using Terraform
 ![Infrastructure-Deployment Using Terraform](<images/Infrastructure-Deployment Using Terraform.png>)
 
-- App Deployment on Eks
+- App Deployment on EKS.
 ![App Deplyment on Eks](<images/App Deplyment on Eks.png>)
 
 # Jenkins EC2 Instance Setup with Ansible (Bonus)
