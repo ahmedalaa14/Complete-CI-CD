@@ -81,7 +81,7 @@ To run the application on your local machine:
   
 ![Docker Image Before Multi Stage Dockerfile](<images/dockerImage- before multistage.png>)
 
-Docker Image After Multi Stage Dockerfile
+- Docker Image After Multi Stage Dockerfile
 
 ![Docker Image After Multi Stage Dockerfile](<images/dockerImage- minimize.png>)
 
