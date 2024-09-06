@@ -29,6 +29,6 @@ kubectl apply -f kubernetes/
 ```
 - This command will create the Kubernetes resources defined in the manifests, including the Deployment, Service, Ingress, Persistent Volume, and Persistent Volume Claim.
 
-## Applying Kubernetes Files.
+## Applying Kubernetes Files
 
-![Applying Kubernetes Files](<images/Applying Kubernetes Files.png>)
+![Applying Kubernetes Files](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Applying%20Kubernetes%20Files.png)
