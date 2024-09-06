@@ -79,7 +79,7 @@ To run the application on your local machine:
 ![Docker Image Before Multi Stage Dockerfile](<images/dockerImage- before multistage.png>)
 ![Docker Image After Multi Stage Dockerfile](<images/dockerImage- minimize.png>)
 
-## Ansible
+## Ansible (Bonus)
 - created `playbook.yml` to automate the workflow of building, tagging, pushing Docker images to DockerHub, and deploying a container from the image.
 ```yaml
 ---
@@ -110,7 +110,7 @@ To run the application on your local machine:
     command: docker run -d --name python-app -p 5000:5000 ahmedalaa14/flask-app-mini
 ```    
 
-## Bash Script
+## Bash Script (Bonus)
 - Same as the Ansible `playbook.yml` to automate the workflow of building, tagging, pushing Docker images to DockerHub, and deploying a container from the image.
 
 ```yaml
@@ -173,7 +173,7 @@ kubectl apply -f kubernetes/
 - This document provides detailed instructions for deploying infrastructure using Terraform. I have created Three modules in this project: `ec2`, `eks`, and `vpc`. The goal is to create an environment that includes an EC2 instance for Jenkins, an EKS cluster with worker nodes, and a network infrastructure with subnets and NAT gateways.
 
 
-## Modules Overview
+## Modules Overview (Bonus)
 
 ### EC2 Module
 
@@ -209,3 +209,67 @@ terraform destroy
 
 - App Deployment on Eks
 ![App Deplyment on Eks](<images/App Deplyment on Eks.png>)
+
+# Jenkins EC2 Instance Setup with Ansible (Bonus)
+
+- This project automates the setup of Jenkins and several DevOps tools on an EC2 instance using Ansible. The setup includes Docker, AWS CLI, Kubernetes, Terraform, Trivy, and Jenkins, with role-based permission configuration.
+
+
+
+- The Ansible playbook automates the following tasks:
+
+- **Installing and configuring Jenkins** on an EC2 instance.
+- **Installing Docker** and enabling it to manage containers.
+- **Installing AWS CLI** for cloud operations.
+- **Installing Kubernetes tools (kubectl)** for managing K8s clusters.
+- **Installing Terraform** for infrastructure as code.
+- **Installing Trivy** for container image scanning.
+- **Configuring permissions** for Jenkins and other tools.
+
+## Prerequisites
+
+- Before running the playbook, ensure the following are in place:
+
+- Ansible is installed on the control machine.
+- SSH access to the target EC2 instance is set up (the `jenkins-ec2` host group should be defined in your Ansible inventory).
+- AWS credentials are available if AWS CLI operations are required.
+- EC2 instance should have sufficient permissions for installing software.
+
+## How to Use
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/ahmedalaa14/Comlete-CI-CD.git
+cd ansible
+```
+
+# Jenkins EC2 Provisioning
+
+## Update the Inventory
+
+- To provision an EC2 instance with Jenkins, you'll need to update your inventory file to include the EC2 instance under the `jenkins-ec2` host group. Modify your inventory file as follows:
+
+```bash
+[jenkins-ec2]
+ec2-instance-ip ansible_user=ubuntu ansible_ssh_private_key_file=path-to-your-key.pem
+Replace ec2-instance-ip with the actual IP address of your EC2 instance, and path-to-your-key.pem with the path to your SSH private key file.
+```
+## Run the Playbook
+- After updating the inventory file, run the Ansible playbook to provision the EC2 instance with Jenkins and related tools:
+
+
+```bash
+ansible-playbook -i inventory playbook.yml
+This command will execute the playbook defined in palybook.yml and set up Jenkins on the EC2 instance.
+```
+
+## Access Jenkins
+- Once the playbook has completed, you can access Jenkins by navigating to the following URL in your web browser:
+
+```bash
+http://<EC2-instance-IP>:8080
+Replace <EC2-instance-IP> with the actual IP address of your EC2 instance.
+```
+- Deployment Jenkins on EC2 Using Ansible 
+![Jenkins-on-EC2-Deployment](<images/Jenkins-on-EC2-Deployment.png>)
