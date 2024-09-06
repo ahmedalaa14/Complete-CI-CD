@@ -6,7 +6,7 @@ This project contains the Kubernetes manifests for deploying Prometheus and Graf
 
 - Architecture Prometheus - Grafana:
 
-![Architecture Prometheus - Grafana](images/Architecture-Prometheus-Grafana.png)
+![Architecture Prometheus - Grafana](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Architecture%20Prometheus%20-%20Grafana.png)
 
 ## Prerequisites
 
