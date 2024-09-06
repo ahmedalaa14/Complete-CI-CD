@@ -68,6 +68,9 @@ To run the application on your local machine:
 4. **Access the application**:
 
    Open your browser and navigate to `http://localhost:5000`.
+   
+- It Should be like That 
+![Python App Deployment Local](<images/Python App Deployment Local.png>)   
 
 ## Bouns In Docker 
 - we created a multi-stage dockerfile contains build stage and production stage.
