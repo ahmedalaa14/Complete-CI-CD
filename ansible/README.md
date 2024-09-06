@@ -114,7 +114,7 @@ Replace ec2-instance-ip with the actual IP address of your EC2 instance, and pat
 
 ```bash
 ansible-playbook -i inventory playbook.yml
-This command will execute the playbook defined in site.yml and set up Jenkins on the EC2 instance.
+This command will execute the playbook defined in palybook.yml and set up Jenkins on the EC2 instance.
 ```
 
 ## Access Jenkins
