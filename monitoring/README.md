@@ -1,6 +1,6 @@
 # Prometheus and Grafana Deployment
 
-This project contains the Kubernetes manifests for deploying Prometheus and Grafana.
+- This project contains the Kubernetes manifests for deploying Prometheus and Grafana.
 
 # Architecture 
 
@@ -15,7 +15,7 @@ This project contains the Kubernetes manifests for deploying Prometheus and Graf
 
 ## Deployment
 
-To deploy Prometheus and Grafana, follow these steps:
+- To deploy Prometheus and Grafana, follow these steps:
 
 1. Clone this repository:
 
@@ -37,10 +37,10 @@ Prometheus: Run
 ```bash 
 minikube service prometheus-service -n library
 ``` 
-to get the URL for Prometheus.
+- to get the URL for Prometheus.
 Grafana: 
 Run 
 ```bash 
 minikube service grafana-service -n library 
 ``` 
-to get the URL for Grafana.
+- to get the URL for Grafana.
