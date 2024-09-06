@@ -199,3 +199,5 @@ terraform apply
 ```
 terraform destroy
 ```
+
+[Infrastructure-Deployment Using Terraform](<images/Infrastructure-Deployment Using Terraform.png>)
