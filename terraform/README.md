@@ -23,6 +23,10 @@
 ```
 git clone https://github.com/ahmedalaa14/Complete-CI-CD.git
 ```
+```bash
+cd terraform
+```
+
 2. Initialize Terraform:
 ```
 terraform init
