@@ -32,6 +32,14 @@
 
 - Open your browser and navigate to `http://localhost:5000`.
 
+3. Testing
+
+- To run the unit tests, use the following command:
+```bash
+python -m unittest test_app.py
+```
+
+
 
 3. **Build the Docker image**:
 
