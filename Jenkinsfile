@@ -12,8 +12,7 @@ pipeline {
                 script {
                     sh """ 
                         cd ${env.APP_PATH}                                      
-                        pip install -r requirements.txt
-                        ${env.Python_Path} app.py &                                 // run the app in background
+=                        ${env.Python_Path} app.py &                                 // run the app in background
                        """
                 }
             }
