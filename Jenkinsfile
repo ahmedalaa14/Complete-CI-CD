@@ -7,16 +7,6 @@ pipeline {
         APP_PATH = "app"                          // application path
     }
     stages {
-        stage('Install dependencies and Run App') {
-            steps {
-                script {
-                    sh """ 
-                        cd ${env.APP_PATH}                                      
-                        ${env.Python_Path} app.py &                                 // run the app in background
-                       """
-                }
-            }
-        }
         stage('Build and Test App') {
             steps {
                 script {
