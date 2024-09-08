@@ -7,12 +7,6 @@ pipeline {
         APP_PATH = "/app"                          // application path
     }
     stages {
-        stage('Preparation') {
-            steps {
-                // get some code from git
-                git "https://github.com/ahmedalaa14/Complete-CI-CD.git"
-            }
-        }
         stage('Install dependencies and Run App') {
             steps {
                 script {
