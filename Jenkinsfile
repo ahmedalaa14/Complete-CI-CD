@@ -12,7 +12,6 @@ pipeline {
                 script {
                     sh """ 
                         cd ${env.APP_PATH}
-                        sudo apt install python3.11-venv
                         ${env.Python_Path} -m venv venv                             // create virtual environment
                         . venv/bin/activate                                         // activate virtual environment
                         pip install -r requirements.txt
