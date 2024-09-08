@@ -15,7 +15,19 @@ pipeline {
                         cd ${env.APP_PATH}
                         ${env.Python_Path} -m venv ${env.VENV_PATH}
                         . ${env.VENV_PATH}/bin/activate
-                       """
+                    """
+                }
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    sh """ 
+                        cd ${env.APP_PATH}
+                        . ${env.VENV_PATH}/bin/activate
+                        pip install flask
+                        pip install pytest
+                    """
                 }
             }
         }
@@ -25,9 +37,8 @@ pipeline {
                     sh """ 
                         cd ${env.APP_PATH}
                         . ${env.VENV_PATH}/bin/activate
-                        pip install pytest
-                        pytest --junitxml=report.xml    #generate test report
-                       """
+                        pytest --junitxml=report.xml            # generate test report
+                    """
                 }
             }
         }
@@ -38,9 +49,9 @@ pipeline {
                         cd ${env.APP_PATH}
                         . ${env.VENV_PATH}/bin/activate
                         pip install coverage
-                        coverage run -m pytest --junitxml=unit_test_report.xml              #run unit tests with coverage and generate report
-                        coverage xml -o coverage.xml                                         #generate coverage report in xml format
-                       """
+                        coverage run -m pytest --junitxml=unit_test_report.xml             # run unit tests with coverage and generate report
+                        coverage xml -o coverage.xml                                     # generate coverage report in xml format
+                    """
                 }
             }
         }
