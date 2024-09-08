@@ -37,7 +37,7 @@ pipeline {
                     sh """ 
                         cd ${env.APP_PATH}
                         . ${env.VENV_PATH}/bin/activate
-                        pytest --junitxml=report.xml            # generate test report
+                        pytest --junitxml=report.xml  # generate test report
                     """
                 }
             }
@@ -49,8 +49,8 @@ pipeline {
                         cd ${env.APP_PATH}
                         . ${env.VENV_PATH}/bin/activate
                         pip install coverage
-                        coverage run -m pytest --junitxml=unit_test_report.xml             # run unit tests with coverage and generate report
-                        coverage xml -o coverage.xml                                     # generate coverage report in xml format
+                        coverage run -m pytest --junitxml=unit_test_report.xml  # run unit tests with coverage and generate report
+                        coverage xml -o coverage.xml  # generate coverage report in xml format
                     """
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'report.xml, unit_test_report.xml, coverage.xml', fingerprint: true
+            archiveArtifacts artifacts: 'app/report.xml, app/unit_test_report.xml, app/coverage.xml', fingerprint: true
         }
     }
 }
