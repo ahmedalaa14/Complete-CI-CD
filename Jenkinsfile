@@ -7,6 +7,11 @@ pipeline {
         APP_PATH = "/app/"                          // application path
     }
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()   // clean workspace
+            }
+        }
         stage('Install dependencies and Run App') {
             steps {
                 script {
