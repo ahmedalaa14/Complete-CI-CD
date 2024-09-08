@@ -12,7 +12,7 @@ pipeline {
                 script {
                     sh """ 
                         cd ${env.APP_PATH}                                      
-=                        ${env.Python_Path} app.py &                                 // run the app in background
+                        ${env.Python_Path} app.py &                                 // run the app in background
                        """
                 }
             }
