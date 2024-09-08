@@ -4,7 +4,7 @@ pipeline {
         Docker_Image = "ahmedalaa14/flask-app-mini"  // Docker Image Name       
         Docker_Credential = "DockerHub-Credentail"  // Docker ID  
         Python_Path = "/usr/bin/python3"           // python3 path
-        APP_PATH = "/app/"                          // application path
+        APP_PATH = "app"                          // application path
     }
     stages {
         stage('Install dependencies and Run App') {
