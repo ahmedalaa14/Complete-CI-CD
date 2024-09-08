@@ -11,9 +11,7 @@ pipeline {
             steps {
                 script {
                     sh """ 
-                        cd ${env.APP_PATH}
-                        ${env.Python_Path} -m venv venv                             // create virtual environment
-                        . venv/bin/activate                                         // activate virtual environment
+                        cd ${env.APP_PATH}                                      
                         pip install -r requirements.txt
                         ${env.Python_Path} app.py &                                 // run the app in background
                        """
