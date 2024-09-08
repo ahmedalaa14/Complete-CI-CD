@@ -14,7 +14,7 @@ pipeline {
                     sh """ 
                         cd ${env.APP_PATH}
                         ${env.Python_Path} -m venv ${env.VENV_PATH}
-                        source ${env.VENV_PATH}/bin/activate
+                        . ${env.VENV_PATH}/bin/activate
                        """
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
                 script {
                     sh """ 
                         cd ${env.APP_PATH}
-                        source ${env.VENV_PATH}/bin/activate
+                        . ${env.VENV_PATH}/bin/activate
                         pip install pytest
                         pytest --junitxml=report.xml    // generate test report
                        """
@@ -36,7 +36,7 @@ pipeline {
                 script {
                     sh """ 
                         cd ${env.APP_PATH}
-                        source ${env.VENV_PATH}/bin/activate
+                        . ${env.VENV_PATH}/bin/activate
                         pip install coverage
                         coverage run -m pytest --junitxml=unit_test_report.xml              // run unit tests with coverage and generate report
                         coverage xml -o coverage.xml                                         // generate coverage report in xml format
