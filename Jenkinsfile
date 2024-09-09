@@ -109,7 +109,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        ${env.Trivy_Path} image --format template --template "@contrib/junit.tpl" -o trivy-report.xml ${env.Docker_Image}:${env.BUILD_NUMBER}
+                        ${env.Trivy_Path} image --format table -o trivy-report.xml ${env.Docker_Image}:${env.BUILD_NUMBER}
                     """
                 }
             }
