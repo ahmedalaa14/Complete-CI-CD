@@ -129,13 +129,13 @@ pipeline {
                         -v $(pwd):/workspace \
                         anchor/anchor-cli:latest scan \
                         --docker-image ${env.Docker_Image} \
-                        --output /workspace/anchor-report.json
+                        --output /workspace/anchor-report.txt
                     """
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'anchor-report.json', fingerprint: true
+                    archiveArtifacts artifacts: 'anchor-report.txt', fingerprint: true
                 }
             }
          }        
