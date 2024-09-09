@@ -342,3 +342,34 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 - Grafana Dashboard on EKS.
 
 ![Grafana Dashboard](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Grafana%20Dashboard.png)
+
+
+## Jenkins Pipeline 
+
+# CI Stages 
+- This Jenkins pipeline automates the build, testing, security scanning, and deployment process for a Flask application. It includes several stages for ensuring code quality and security compliance, leveraging tools like SonarQube, OWASP Dependency Check, Trivy, Grype, and Terrascan.
+
+## Key Features
+
+- **Python Virtual Environment Setup**: Isolates dependencies using Python's `venv`.
+- **Dependency Installation**: Installs required packages such as Flask and pytest.
+- **Testing**: Runs unit tests and generates reports, including test coverage.
+- **Code Quality Analysis**: Performs static analysis using SonarQube.
+- **Security Scans**:
+  - **OWASP Dependency Check**: Scans for vulnerabilities in dependencies.
+  - **Docker Image Scanning**: Scans Docker images for vulnerabilities using Trivy and Grype.
+  - **Infrastructure Scanning**: Scans Terraform code for compliance using Terrascan.
+- **Docker Image Build**: Builds and tags a Docker image for the Flask application.
+
+# Continous Integration Pipeline 
+
+![Complete Continuous Integration Diagram](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Complete%20Continous%20Integration.png)
+
+# SonarQube Analysis Integration
+
+![SonarQube Analysis Integration](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/SonarQube%20Analysis.png)
+
+- SonarQube Issues That Developers Should Fix.
+
+![SonarQube Issues](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/The%20Issues%20In%20SonarQube-%20UI.png)
+
