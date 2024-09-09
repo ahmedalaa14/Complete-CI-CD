@@ -120,7 +120,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    ${env.Grype_path} ${env.Docker_Image} | Out-File -FilePath grype-report.txt -Encoding utf8
+                    ${env.Grype_path} ${env.Docker_Image} > grype-report.txt 
 
                     """
                 }
