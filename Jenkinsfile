@@ -6,6 +6,7 @@ pipeline {
         Python_Path = "/usr/bin/python3"           // python3 path
         APP_PATH = "app"                          // application path
         VENV_PATH = "venv"                       // virtual environment path
+        sonar_home = "sonarqube"                // sonarqube home path
     }
     stages {
         stage('Setup Virtual Environment') {
@@ -52,6 +53,23 @@ pipeline {
                         coverage run -m pytest --junitxml=unit_test_report.xml  # run unit tests with coverage and generate report
                         coverage xml -o coverage.xml  # generate coverage report in xml format
                     """
+                }
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                withSonarQubeEnv(credentialsId: 'jenkins-sonar', installationName: 'sonarqube') {
+                    {
+                        sh """
+                            cd ${env.APP_PATH}
+                            . ${env.VENV_PATH}/bin/activate
+                            sonar-scanner \
+                            -Dsonar.projectKey=ahmed-sonarqube \
+                            -Dsonar.sources=. \
+                            -Dsonar.host.url=http://localhost:9000 \
+                        """
+                    }
                 }
             }
         }
