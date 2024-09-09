@@ -10,7 +10,7 @@ pipeline {
         OWASP_HOME = tool name: 'owasp'                      // OWASP Dependency Check home path
         
         Trivy_Path = "/usr/bin/trivy"                        // Trivy path
-        Grype_path = "/usr/local/bin/gryp"                   // Grype path
+        Grype_path = "/usr/local/bin/grype"                   // Grype path
     
     }   
     stages {
