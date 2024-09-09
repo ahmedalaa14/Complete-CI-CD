@@ -8,9 +8,11 @@ pipeline {
         VENV_PATH = "venv"                                     // Virtual environment path
         SONAR_SCANNER_HOME = tool name: 'sonarqube'           // SonarQube home path
         OWASP_HOME = tool name: 'owasp'                      // OWASP Dependency Check home path
-        Trivy_Path = "/usr/bin/trivy"                             // Trivy path
-    }   
+        
+        Trivy_Path = "/usr/bin/trivy"                        // Trivy path
+        Grype_path = "/usr/local/bin/gryp"                   // Grype path
     
+    }   
     stages {
         /*
         stage('Setup Virtual Environment') {
@@ -118,8 +120,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    choco install grype -y
-                    grype ${env.Docker_Image} | Out-File -FilePath grype-report.txt -Encoding utf8
+                    ${env.Grype_path} ${env.Docker_Image} | Out-File -FilePath grype-report.txt -Encoding utf8
 
                     """
                 }
