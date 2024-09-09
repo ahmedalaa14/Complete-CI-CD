@@ -8,7 +8,7 @@ pipeline {
         VENV_PATH = "venv"                                     // Virtual environment path
         SONAR_SCANNER_HOME = tool name: 'sonarqube'           // SonarQube home path
         OWASP_HOME = tool name: 'owasp'                      // OWASP Dependency Check home path
-        Trivy_Path = "/usr/bin/trivy"   
+        Trivy_Path = "${trivy}"                             // Trivy path
     }   
     
     stages {
@@ -110,6 +110,7 @@ pipeline {
                 script {
                     sh """
                         ${env.Trivy_Path} image --format table -o trivy-report.txt ${env.Docker_Image}:${env.BUILD_NUMBER}
+                        type trivy-report.txt
                     """
                 }
             }
