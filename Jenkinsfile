@@ -10,7 +10,7 @@ pipeline {
         OWASP_HOME = tool name: 'owasp'                      // OWASP scanner home path
     }
     stages {
-        /*
+        
         stage('Setup Virtual Environment') {
             steps {
                 script {
@@ -63,7 +63,7 @@ pipeline {
                 }
             }
         }
-        /*
+        
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -82,8 +82,7 @@ pipeline {
                 }
             }
         }
-        */
-
+        
         stage('OWASP Scan') {
         steps {
             script {
