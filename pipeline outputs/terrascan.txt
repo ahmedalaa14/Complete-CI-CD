@@ -1,0 +1,148 @@
+Violation Details -
+    
+	Description    :	Security Groups - Unrestricted Specific Ports - (SSH,22)
+	File           :	modules/ec2/main.tf
+	Module Name    :	ec2
+	Plan Root      :	./
+	Line           :	23
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Security Groups - Unrestricted Specific Ports - (SSH,22)
+	File           :	modules/ec2/main.tf
+	Module Name    :	root
+	Plan Root      :	modules/ec2
+	Line           :	23
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Security Groups - Unrestricted Specific Ports - (HTTP,80)
+	File           :	modules/ec2/main.tf
+	Module Name    :	ec2
+	Plan Root      :	./
+	Line           :	23
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Security Groups - Unrestricted Specific Ports - (HTTP,80)
+	File           :	modules/ec2/main.tf
+	Module Name    :	root
+	Plan Root      :	modules/ec2
+	Line           :	23
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	EC2 instances should disable IMDS or require IMDSv2 as this can be related to the weaponization phase of kill chain
+	File           :	modules/ec2/main.tf
+	Module Name    :	ec2
+	Plan Root      :	./
+	Line           :	67
+	Severity       :	MEDIUM
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	EC2 instances should disable IMDS or require IMDSv2 as this can be related to the weaponization phase of kill chain
+	File           :	modules/ec2/main.tf
+	Module Name    :	root
+	Plan Root      :	modules/ec2
+	Line           :	67
+	Severity       :	MEDIUM
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Ensure that your AWS application is not deployed within the default Virtual Private Cloud in order to follow security best practices
+	File           :	modules/ec2/main.tf
+	Module Name    :	ec2
+	Plan Root      :	./
+	Line           :	67
+	Severity       :	MEDIUM
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Ensure that your AWS application is not deployed within the default Virtual Private Cloud in order to follow security best practices
+	File           :	modules/ec2/main.tf
+	Module Name    :	root
+	Plan Root      :	modules/ec2
+	Line           :	67
+	Severity       :	MEDIUM
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Ensure that detailed monitoring is enabled for EC2 instances.
+	File           :	modules/ec2/main.tf
+	Module Name    :	ec2
+	Plan Root      :	./
+	Line           :	67
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Ensure that detailed monitoring is enabled for EC2 instances.
+	File           :	modules/ec2/main.tf
+	Module Name    :	root
+	Plan Root      :	modules/ec2
+	Line           :	67
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Security Groups - Unrestricted Specific Ports - Known internal web port (TCP,8080)
+	File           :	modules/ec2/main.tf
+	Module Name    :	ec2
+	Plan Root      :	./
+	Line           :	23
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Security Groups - Unrestricted Specific Ports - Known internal web port (TCP,8080)
+	File           :	modules/ec2/main.tf
+	Module Name    :	root
+	Plan Root      :	modules/ec2
+	Line           :	23
+	Severity       :	HIGH
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Ensure VPC flow logging is enabled in all VPCs
+	File           :	modules/vpc/main.tf
+	Module Name    :	vpc
+	Plan Root      :	./
+	Line           :	2
+	Severity       :	LOW
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Security Groups - Unrestricted Specific Ports - (HTTPS,443)
+	File           :	modules/ec2/main.tf
+	Module Name    :	ec2
+	Plan Root      :	./
+	Line           :	23
+	Severity       :	LOW
+	
+	-----------------------------------------------------------------------
+	
+	Description    :	Security Groups - Unrestricted Specific Ports - (HTTPS,443)
+	File           :	modules/ec2/main.tf
+	Module Name    :	root
+	Plan Root      :	modules/ec2
+	Line           :	23
+	Severity       :	LOW
+	
+	-----------------------------------------------------------------------
+	
+
+Scan Summary -
+
+	File/Folder         :	/var/jenkins_home/workspace/Complete-ci-cd/terraform
+	IaC Type            :	terraform
+	Scanned At          :	2024-09-09 18:20:48.596524603 +0000 UTC
+	Policies Validated  :	146
+	Violated Policies   :	15
+	Low                 :	3
+	Medium              :	4
+	High                :	8
