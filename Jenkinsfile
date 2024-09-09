@@ -107,7 +107,6 @@ pipeline {
         stage('Scan Docker Image with Trivy') {
             steps {
                 script {
-                    sh " ${env.Trivy_Path} --refresh  "
                     sh "${env.Trivy_Path} image --format table --no-progress -o trivy-report.txt ${env.Docker_Image}:${env.BUILD_NUMBER}"
                 }
             }
