@@ -63,7 +63,6 @@ pipeline {
                         withSonarQubeEnv('sonarqube') {
                             sh """
                                 cd ${env.APP_PATH}
-                                . ${env.VENV_PATH}/bin/activate
                                 ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                                 -Dsonar.projectKey=ahmed-sonarqube \
                                 -Dsonar.sources=. \
