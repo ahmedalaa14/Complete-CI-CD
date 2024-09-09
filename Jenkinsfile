@@ -130,7 +130,7 @@ pipeline {
                 }
             }
         }
-          /*
+          
         stage ('Scan Terraform Code with Terrascan') {
             steps {
                 script {
@@ -147,10 +147,8 @@ pipeline {
                     archiveArtifacts artifacts: 'terrascan.txt', fingerprint: true
                 }
 
-            */
-
             }
             
         }
-        
-
+    }   
+}
