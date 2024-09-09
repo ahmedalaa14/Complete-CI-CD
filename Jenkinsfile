@@ -59,7 +59,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'jenkins-sonar', installationName: 'sonarqube') {
+                    withSonarQubeEnv('sonarqube', credentialsId: 'jenkins-sonar', installationName: 'sonarqube') {
                         sh """
                             cd ${env.APP_PATH}
                             . ${env.VENV_PATH}/bin/activate
