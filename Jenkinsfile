@@ -14,7 +14,7 @@ pipeline {
         Terraform_path  ="terraform"                     // Terraform path
     }   
     stages {
-        /*
+        
         stage('Setup Virtual Environment') {
             steps {
                 script {
@@ -130,7 +130,7 @@ pipeline {
                 }
             }
         }
-        */
+        
         stage ('Scan Terraform Code with Terrascan') {
             steps {
                 script {
