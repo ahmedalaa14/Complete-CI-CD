@@ -10,7 +10,7 @@ pipeline {
         OWASP_HOME = tool name: 'owasp'                      // OWASP scanner home path
     }
     stages {
-        
+        /*
         stage('Setup Virtual Environment') {
             steps {
                 script {
@@ -82,11 +82,11 @@ pipeline {
                 }
             }
         }
-        
+        */
         stage('OWASP Scan') {
         steps {
             script {
-                dependencyCheck additionalArguments: '--noupdate --exclude venv --scan app --format XML --out owasp-report.xml', odcInstallation: 'owasp'
+                dependencyCheck additionalArguments: '--noupdate --exclude venv --scan ${env.APP_PATH} --format XML --out owasp-report.xml', odcInstallation: 'owasp'
             }
         }
         post {
