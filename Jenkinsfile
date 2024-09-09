@@ -96,7 +96,7 @@ pipeline {
                 }
             }
         }
-        */
+        
         stage('Build Docker Image') {
             steps {
                 script {
@@ -130,6 +130,7 @@ pipeline {
                 }
             }
         }
+        */
         stage ('Scan Terraform Code with Terrascan') {
             steps {
                 script {
