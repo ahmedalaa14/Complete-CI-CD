@@ -105,7 +105,7 @@ pipeline {
                 }
             }
         }
-        stage('Scan Docker Image') {
+        stage('Scan Docker Image with Trivy') {
             steps {
                 script {
                     sh """
@@ -118,7 +118,27 @@ pipeline {
                     archiveArtifacts artifacts: 'trivy-report.txt', fingerprint: true
                 }
             }
+
         }
+         stage('Scan Docker Image with Anchor') {
+            steps {
+                script {
+                    sh """
+                        cd ${env.APP_PATH}
+                        docker run --rm \
+                        -v $(pwd):/workspace \
+                        anchor/anchor-cli:latest scan \
+                        --docker-image ${env.Docker_Image} \
+                        --output /workspace/anchor-report.json
+                    """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'anchor-report.json', fingerprint: true
+                }
+            }
+         }        
     }
 }    
 
