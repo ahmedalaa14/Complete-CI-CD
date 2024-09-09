@@ -100,7 +100,7 @@ pipeline {
                 script {
                     sh """
                         cd ${env.APP_PATH}
-                        docker build -t ${env.Docker_Image}:${env.BUILD_NUMBER} .
+                        docker build -t ${env.Docker_Image} .
                     """
                 }
             }
@@ -109,8 +109,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        ${env.Trivy_Path} image --format table -o trivy-report.txt ${env.Docker_Image}:${env.BUILD_NUMBER}
-                        type trivy-report.txt
+                        ${env.Trivy_Path} image --format table -o trivy-report.txt ${env.Docker_Image}
                     """
                 }
             }
