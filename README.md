@@ -373,3 +373,22 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 
 ![SonarQube Issues](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/The%20Issues%20In%20SonarQube-%20UI.png)
 
+# Trivy Scan For Docker Image
+
+- Trivy is a simple and comprehensive vulnerability scanner for Docker images. It's capable of detecting vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and application dependencies (Bundler, Composer, npm, yarn, etc.).
+
+
+![Trivy Scan](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Trivy%20Scan.png)
+
+# Grype Scan For Docker Image
+
+- Grype is a vulnerability scanner for Docker images. It scans the packages within the Docker image and checks them against a database of known vulnerabilities.
+ 
+
+![Grype Scan](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Grype%20Scan.png)
+
+## Terrascan for Terraform Code
+
+- Terrascan Summary: Terrascan is a comprehensive tool used for scanning Infrastructure as Code (IaC) for security vulnerabilities and compliance issues. Detailed results of each Terrascan scan are stored in the `terrascan.txt` file.
+
+![TerraScan](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Terrascan%20.png)
