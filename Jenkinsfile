@@ -8,9 +8,8 @@ pipeline {
         VENV_PATH = "venv"                                     // Virtual environment path
         SONAR_SCANNER_HOME = tool name: 'sonarqube'           // SonarQube home path
         OWASP_HOME = tool name: 'owasp'                      // OWASP Dependency Check home path
-        
-        Trivy_Path = "/usr/bin/trivy"                        // Trivy path
-        Grype_path = "/usr/local/bin/grype"                   // Grype path
+        Trivy_Path = "/usr/bin/trivy"                       // Trivy path
+        Grype_path = "/usr/local/bin/grype"                // Grype path
     
     }   
     stages {
@@ -100,7 +99,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "cd ${env.APP_PATH} && docker build -t ${env.Docker_Image}:${env.BUILD_NUMBER} ."
+                    sh "cd ${env.APP_PATH} && docker build -d -t ${env.Docker_Image}:${env.BUILD_NUMBER} . "
                 }
             }
         }
@@ -120,15 +119,13 @@ pipeline {
             steps {
                 script {
                     sh """
-                    
-                    ${env.Grype_path} ${env.Docker_Image}:${env.BUILD_NUMBER} > grype-report.txt 
-
+                    ${env.Grype_path} ${env.Docker_Image}:${env.BUILD_NUMBER} > grype.txt 
                     """
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'grype-report.txt', fingerprint: true
+                    archiveArtifacts artifacts: 'grype.txt', fingerprint: true
                 }
             }
         }
