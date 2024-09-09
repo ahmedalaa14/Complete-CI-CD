@@ -5,7 +5,7 @@ pipeline {
         Docker_Credential = "DockerHub-Credentail"  // Docker ID  
         Python_Path = "/usr/bin/python3"           // python3 path
         APP_PATH = "app"                          // application path
-        VENV_PATH = "venv"                        // virtual environment path
+        VENV_PATH = "venv"                       // virtual environment path
     }
     stages {
         stage('Setup Virtual Environment') {
