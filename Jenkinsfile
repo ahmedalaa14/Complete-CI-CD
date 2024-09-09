@@ -100,14 +100,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "cd ${env.APP_PATH} && docker build -t ${env.Docker_Image} ."
+                    sh "cd ${env.APP_PATH} && docker build -t ${env.Docker_Image}:${env.BUILD_NUMBER} ."
                 }
             }
         }
         stage('Scan Docker Image with Trivy') {
             steps {
                 script {
-                    sh "${env.Trivy_Path} image --format table -o trivy-report.txt ${env.Docker_Image}"
+                    sh " ${env.Trivy_Path} --refresh  "
+                    sh "${env.Trivy_Path} image --format table --no-progress -o trivy-report.txt ${env.Docker_Image}:${env.BUILD_NUMBER}"
                 }
             }
             post {
@@ -120,7 +121,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    ${env.Grype_path} ${env.Docker_Image} > grype-report.txt 
+                    
+                    ${env.Grype_path} ${env.Docker_Image}:${env.BUILD_NUMBER} > grype-report.txt 
 
                     """
                 }
