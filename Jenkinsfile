@@ -62,6 +62,7 @@ pipeline {
                 }
             }
         }
+        /*
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -80,14 +81,11 @@ pipeline {
                 }
             }
         }
-        stage('OWASP Scan') {
+        */
+
+         stage('OWASP Scan') {
             steps {
-                script {
-                    sh """
-                        cd ${env.APP_PATH}
-                        ${OWASP_HOME}/bin/owasp-cli scan --output owasp-report.xml
-                    """
-                }
+                dependencyCheck additionalArguments: '--format XML --out owasp-report.xml', odcInstallation: 'owasp', scanPath: "${env.APP_PATH}"
             }
             post {
                 always {
