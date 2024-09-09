@@ -114,22 +114,19 @@ pipeline {
                 }
             }
         }
-        stage('Scan Docker Image with Anchor') {
+        stage('Scan Docker Image with Grype') {
             steps {
                 script {
                     sh """
-                        docker pull anchor/anchor-cli:latest
-                        docker run --rm \
-                        -v ${env.WORKSPACE}:/workspace \
-                        anchor/anchor-cli:latest scan \
-                        --docker-image ${env.Docker_Image} \
-                        --output /workspace/anchor-report.txt
+                    choco install grype -y
+                    grype ${env.Docker_Image} | Out-File -FilePath grype-report.txt -Encoding utf8
+
                     """
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'anchor-report.txt', fingerprint: true
+                    archiveArtifacts artifacts: 'grype-report.txt', fingerprint: true
                 }
             }
         }
