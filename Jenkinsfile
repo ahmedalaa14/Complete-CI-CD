@@ -10,7 +10,8 @@ pipeline {
         OWASP_HOME = tool name: 'owasp'                      // OWASP Dependency Check home path
         Trivy_Path = "/usr/bin/trivy"                       // Trivy path
         Grype_path = "/usr/local/bin/grype"                // Grype path
-    
+        Terrascan_path = "/usr/local/bin/terrascan"       // Terrascan path
+        Terraform_Path = "terraform"                      // Terraform path
     }   
     stages {
         /*
@@ -126,6 +127,20 @@ pipeline {
             post {
                 always {
                     archiveArtifacts artifacts: 'grype.txt', fingerprint: true
+                }
+            }
+        }
+        stage ('Scan Terraform Code with Terrascan') {
+            steps {
+                script {
+                    sh """
+                    ${env.Terrascan_path} scan  ${env.Terraform_Path} > terrascan.txt
+                    """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'terrascan.txt', fingerprint: true
                 }
             }
         }
