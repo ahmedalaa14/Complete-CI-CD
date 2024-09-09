@@ -98,19 +98,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh """
-                        cd ${env.APP_PATH}
-                        docker build -t ${env.Docker_Image} .
-                    """
+                    sh "cd ${env.APP_PATH} && docker build -t ${env.Docker_Image} ."
                 }
             }
         }
         stage('Scan Docker Image with Trivy') {
             steps {
                 script {
-                    sh """
-                        ${env.Trivy_Path} image --format table -o trivy-report.txt ${env.Docker_Image}
-                    """
+                    sh "${env.Trivy_Path} image --format table -o trivy-report.txt ${env.Docker_Image}"
                 }
             }
             post {
@@ -118,15 +113,13 @@ pipeline {
                     archiveArtifacts artifacts: 'trivy-report.txt', fingerprint: true
                 }
             }
-
         }
-         stage('Scan Docker Image with Anchor') {
+        stage('Scan Docker Image with Anchor') {
             steps {
                 script {
                     sh """
-                        cd ${env.APP_PATH}
                         docker run --rm \
-                        -v $(pwd):/workspace \
+                        -v ${env.WORKSPACE}:/workspace \
                         anchor/anchor-cli:latest scan \
                         --docker-image ${env.Docker_Image} \
                         --output /workspace/anchor-report.txt
@@ -138,7 +131,6 @@ pipeline {
                     archiveArtifacts artifacts: 'anchor-report.txt', fingerprint: true
                 }
             }
-         }        
+        }
     }
-}    
-
+}
