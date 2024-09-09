@@ -99,7 +99,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "cd ${env.APP_PATH} && docker build -d -t ${env.Docker_Image}:${env.BUILD_NUMBER} . "
+                    sh "cd ${env.APP_PATH} && docker build -t ${env.Docker_Image}:${env.BUILD_NUMBER} . "
                 }
             }
         }
