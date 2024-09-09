@@ -85,7 +85,7 @@ pipeline {
 
          stage('OWASP Scan') {
             steps {
-                dependencyCheck additionalArguments: '--format XML --out owasp-report.xml', odcInstallation: 'owasp', scanPath: "${env.APP_PATH}"
+                dependencyCheck additionalArguments: '--format XML --out owasp-report.xml', odcInstallation: 'owasp'
             }
             post {
                 always {
