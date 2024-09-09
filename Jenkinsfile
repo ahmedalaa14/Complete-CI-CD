@@ -51,7 +51,7 @@ pipeline {
                         . ${env.VENV_PATH}/bin/activate
                         pip install coverage
                         coverage run -m pytest --junitxml=unit_test_report.xml  # run unit tests with coverage and generate report
-                        coverage xml -o coverage.xml  # generate coverage report in xml format
+                        coverage xml -o coverage.xml                           # generate coverage report in xml format
                     """
                 }
             }
@@ -59,15 +59,18 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('sonarqube', credentialsId: 'jenkins-sonar', installationName: 'sonarqube') {
-                        sh """
-                            cd ${env.APP_PATH}
-                            . ${env.VENV_PATH}/bin/activate
-                            sonar-scanner \
-                            -Dsonar.projectKey=ahmed-sonarqube \
-                            -Dsonar.sources=. \
-                            -Dsonar.host.url=http://localhost:9000
-                        """
+                    withCredentials([string(credentialsId: 'jenkins-sonar', variable: 'SONARQUBE_TOKEN')]) {
+                        withSonarQubeEnv('sonarqube') {
+                            sh """
+                                cd ${env.APP_PATH}
+                                . ${env.VENV_PATH}/bin/activate
+                                sonar-scanner \
+                                -Dsonar.projectKey=ahmed-sonarqube \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=http://localhost:9000 \
+                                -Dsonar.login=${SONARQUBE_TOKEN}
+                            """
+                        }
                     }
                 }
             }
