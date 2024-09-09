@@ -67,7 +67,7 @@ pipeline {
                                 ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                                 -Dsonar.projectKey=ahmed-sonarqube \
                                 -Dsonar.sources=. \
-                                -Dsonar.host.url=http://localhost:9000 \
+                                -Dsonar.host.url=http://192.168.1.21:9000 \
                                 -Dsonar.login=${SONARQUBE_TOKEN}
                             """
                         }
