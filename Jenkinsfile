@@ -135,7 +135,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    ${env.Terrascan_path} scan  ${env.Terraform_path} > terrascan.txt
+                    cd ${env.Terraform_path}
+                    ${env.Terrascan_path} scan  > terrascan.txt
                     """
                 }
             }
