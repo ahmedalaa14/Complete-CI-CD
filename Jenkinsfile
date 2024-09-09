@@ -135,8 +135,9 @@ pipeline {
             steps {
                 script {
                     dir("${env.Terraform_path}") {
-                    sh """
-                    ${env.Terrascan_path} scan -d . > terrascan.txt
+                     sh """
+                     # Scan only .tf files and set IaC type to terraform
+                    find . -name "*.tf" | xargs ${env.Terrascan_path} scan -i terraform -d . > terrascan.txt
                     """
                     }
                 }
