@@ -134,9 +134,11 @@ pipeline {
         stage ('Scan Terraform Code with Terrascan') {
             steps {
                 script {
+                    dir("${env.Terraform_path}") {
                     sh """
-                    ${env.Terrascan_path} scan -d ${env.Terraform_path} > terrascan.txt
+                    ${env.Terrascan_path} scan -d . > terrascan.txt
                     """
+                    }
                 }
             }
             post {
