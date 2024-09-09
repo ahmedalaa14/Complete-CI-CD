@@ -55,6 +55,11 @@ pipeline {
                     """
                 }
             }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'app/report.xml, app/unit_test_report.xml, app/coverage.xml', fingerprint: true
+                }
+            }
         }
         stage('SonarQube Analysis') {
             steps {
@@ -73,11 +78,6 @@ pipeline {
                     }
                 }
             }
-        }
-    }
-    post {
-        always {
-            archiveArtifacts artifacts: 'app/report.xml, app/unit_test_report.xml, app/coverage.xml', fingerprint: true
         }
     }
 }
