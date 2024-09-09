@@ -118,6 +118,7 @@ pipeline {
             steps {
                 script {
                     sh """
+                        docker pull anchor/anchor-cli:latest
                         docker run --rm \
                         -v ${env.WORKSPACE}:/workspace \
                         anchor/anchor-cli:latest scan \
