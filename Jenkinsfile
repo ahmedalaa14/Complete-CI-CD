@@ -3,18 +3,20 @@ pipeline {
     environment {
         Docker_Image = "ahmedalaa14/flask-app-mini"                // Docker Image Name       
         Docker_Credential = "DockerHub-Credentail"                // Docker ID  
-        Python_Path = "/usr/bin/python3"                         // python3 path
-        APP_PATH = "app"                                        // application path
-        VENV_PATH = "venv"                                     // virtual environment path
-        SONAR_SCANNER_HOME = tool name: 'sonarqube'           // sonarqube home path
-        OWASP_HOME = tool name: 'owasp'                      // OWASP scanner home path
-    }
+        Python_Path = "/usr/bin/python3"                         // Python 3 path
+        APP_PATH = "app"                                        // Application path
+        VENV_PATH = "venv"                                     // Virtual environment path
+        SONAR_SCANNER_HOME = tool name: 'sonarqube'           // SonarQube home path
+        OWASP_HOME = tool name: 'owasp'                      // OWASP Dependency Check home path
+        Trivy_Path = "/usr/bin/trivy"   
+    }   
+    
     stages {
-        
+        /*
         stage('Setup Virtual Environment') {
             steps {
                 script {
-                    sh """ 
+                    sh """
                         cd ${env.APP_PATH}
                         ${env.Python_Path} -m venv ${env.VENV_PATH}
                         . ${env.VENV_PATH}/bin/activate
@@ -25,11 +27,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh """ 
+                    sh """
                         cd ${env.APP_PATH}
                         . ${env.VENV_PATH}/bin/activate
-                        pip install flask
-                        pip install pytest
+                        pip install flask pytest
                     """
                 }
             }
@@ -37,10 +38,10 @@ pipeline {
         stage('Build and Test App') {
             steps {
                 script {
-                    sh """ 
+                    sh """
                         cd ${env.APP_PATH}
                         . ${env.VENV_PATH}/bin/activate
-                        pytest --junitxml=report.xml  # generate test report
+                        pytest --junitxml=report.xml  # Generate test report
                     """
                 }
             }
@@ -48,12 +49,12 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 script {
-                    sh """ 
+                    sh """
                         cd ${env.APP_PATH}
                         . ${env.VENV_PATH}/bin/activate
                         pip install coverage
-                        coverage run -m pytest --junitxml=unit_test_report.xml  # run unit tests with coverage and generate report
-                        coverage xml -o coverage.xml                           # generate coverage report in xml format
+                        coverage run -m pytest --junitxml=unit_test_report.xml  # Run unit tests with coverage and generate report
+                        coverage xml -o coverage.xml                           # Generate coverage report in XML format
                     """
                 }
             }
@@ -63,7 +64,6 @@ pipeline {
                 }
             }
         }
-        
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -82,18 +82,43 @@ pipeline {
                 }
             }
         }
-        
         stage('OWASP Scan') {
-        steps {
-            script {
-                dependencyCheck additionalArguments: '--noupdate --exclude venv --scan app --format XML --out owasp-report.xml', odcInstallation: 'owasp'
+            steps {
+                script {
+                    dependencyCheck additionalArguments: '--noupdate --exclude venv --scan app --format XML --out owasp-report.xml', odcInstallation: 'owasp'
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'owasp-report.xml', fingerprint: true
+                }
             }
         }
-        post {
-            always {
-                archiveArtifacts artifacts: 'owasp-report.xml', fingerprint: true
+        */
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh """
+                        cd ${env.APP_PATH}
+                        docker build -t ${env.Docker_Image}:${env.BUILD_NUMBER} .
+                    """
+                }
             }
         }
-     }
+        stage('Scan Docker Image') {
+            steps {
+                script {
+                    sh """
+                        ${env.Trivy_Path} image --format template --template "@contrib/junit.tpl" -o trivy-report.xml ${env.Docker_Image}:${env.BUILD_NUMBER}
+                    """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'trivy-report.xml', fingerprint: true
+                }
+            }
+        }
     }
-}
+}    
+
