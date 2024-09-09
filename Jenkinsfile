@@ -11,7 +11,7 @@ pipeline {
         Trivy_Path = "/usr/bin/trivy"                       // Trivy path
         Grype_path = "/usr/local/bin/grype"                // Grype path
         Terrascan_path = "/usr/local/bin/terrascan"       // Terrascan path
-        Terraform_path  ="{env.WORKSPACE}\\terraform"    // Terraform path
+        Terraform_path  ="terraform"    // Terraform path
     }   
     stages {
         /*
