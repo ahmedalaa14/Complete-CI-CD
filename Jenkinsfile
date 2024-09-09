@@ -85,14 +85,16 @@ pipeline {
         */
 
         stage('OWASP Scan') {
-            steps {
-                dependencyCheck additionalArguments: '--exclude venv --scan app --format XML --out owasp-report.xml', odcInstallation: 'owasp'
+        steps {
+            script {
+                dependencyCheck additionalArguments: '--noupdate --exclude venv --scan app --format XML --out owasp-report.xml', odcInstallation: 'owasp'
             }
-            post {
-                always {
-                    archiveArtifacts artifacts: 'owasp-report.xml', fingerprint: true
         }
+        post {
+            always {
+                archiveArtifacts artifacts: 'owasp-report.xml', fingerprint: true
+            }
+        }
+     }
     }
-}
-}
 }
