@@ -1,12 +1,13 @@
 pipeline {
     agent any
     environment {
-        Docker_Image = "ahmedalaa14/flask-app-mini"               // Docker Image Name       
-        Docker_Credential = "DockerHub-Credentail"               // Docker ID  
-        Python_Path = "/usr/bin/python3"                        // python3 path
-        APP_PATH = "app"                                       // application path
-        VENV_PATH = "venv"                                    // virtual environment path
-        SONAR_SCANNER_HOME = tool name: 'sonarqube'          // sonarqube home path
+        Docker_Image = "ahmedalaa14/flask-app-mini"                // Docker Image Name       
+        Docker_Credential = "DockerHub-Credentail"                // Docker ID  
+        Python_Path = "/usr/bin/python3"                         // python3 path
+        APP_PATH = "app"                                        // application path
+        VENV_PATH = "venv"                                     // virtual environment path
+        SONAR_SCANNER_HOME = tool name: 'sonarqube'           // sonarqube home path
+        OWASP_HOME = tool name: 'owasp'                      // OWASP scanner home path
     }
     stages {
         stage('Setup Virtual Environment') {
@@ -76,6 +77,21 @@ pipeline {
                             """
                         }
                     }
+                }
+            }
+        }
+        stage('OWASP Scan') {
+            steps {
+                script {
+                    sh """
+                        cd ${env.APP_PATH}
+                        ${OWASP_HOME}/bin/owasp-cli scan --output owasp-report.xml
+                    """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'app/owasp-report.xml', fingerprint: true
                 }
             }
         }
