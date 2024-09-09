@@ -1,0 +1,9 @@
+NAME        INSTALLED  FIXED-IN  TYPE    VULNERABILITY   SEVERITY 
+libcrypto3  3.3.1-r3   3.3.2-r0  apk     CVE-2024-6119   High      
+libexpat    2.6.2-r0   2.6.3-r0  apk     CVE-2024-45492  Critical  
+libexpat    2.6.2-r0   2.6.3-r0  apk     CVE-2024-45491  Critical  
+libexpat    2.6.2-r0   2.6.3-r0  apk     CVE-2024-45490  Critical  
+libssl3     3.3.1-r3   3.3.2-r0  apk     CVE-2024-6119   High      
+python      3.12.5               binary  CVE-2024-7592   High      
+python      3.12.5               binary  CVE-2024-6232   High      
+python      3.12.5               binary  CVE-2024-8088   Unknown
