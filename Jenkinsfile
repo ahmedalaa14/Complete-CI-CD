@@ -1,12 +1,12 @@
 pipeline {
     agent any
     environment {
-        Docker_Image = "ahmedalaa14/flask-app-mini"      // Docker Image Name       
-        Docker_Credential = "DockerHub-Credentail"       // Docker ID  
-        Python_Path = "/usr/bin/python3"                 // python3 path
-        APP_PATH = "app"                                  // application path
-        VENV_PATH = "venv"                                // virtual environment path
-        SONAR_SCANNER_HOME = tool name: 'sonarqube'       // sonarqube home path
+        Docker_Image = "ahmedalaa14/flask-app-mini"               // Docker Image Name       
+        Docker_Credential = "DockerHub-Credentail"               // Docker ID  
+        Python_Path = "/usr/bin/python3"                        // python3 path
+        APP_PATH = "app"                                       // application path
+        VENV_PATH = "venv"                                    // virtual environment path
+        SONAR_SCANNER_HOME = tool name: 'sonarqube'          // sonarqube home path
     }
     stages {
         stage('Setup Virtual Environment') {
