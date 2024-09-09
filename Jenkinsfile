@@ -109,13 +109,13 @@ pipeline {
             steps {
                 script {
                     sh """
-                        ${env.Trivy_Path} image --format table -o trivy-report.xml ${env.Docker_Image}:${env.BUILD_NUMBER}
+                        ${env.Trivy_Path} image --format table -o trivy-report.txt ${env.Docker_Image}:${env.BUILD_NUMBER}
                     """
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'trivy-report.xml', fingerprint: true
+                    archiveArtifacts artifacts: 'trivy-report.txt', fingerprint: true
                 }
             }
         }
