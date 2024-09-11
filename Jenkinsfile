@@ -214,20 +214,20 @@ pipeline {
             }
         }
     */
-    stage('Notify Slack') {
-    steps {
-        script {
-            echo "Sending notification to Slack"
+     stage('Notify Slack') {
+            steps {
+                script {
+                    echo "Sending notification to Slack"
+                }
+            }
+            post {
+                failure {
+                    slackSend(channel: "${env.slack_channel}", color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                }
+                success {
+                    slackSend(channel: "${env.slack_channel}", color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                }
+            }
         }
-    }
-    post {
-        failure {
-            slacksend (channel: "${env.slack_channel}", color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-        }
-        success {
-            slacksend (channel: "${env.slack_channel}", color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-        }
-    }
-}
     }
 }
