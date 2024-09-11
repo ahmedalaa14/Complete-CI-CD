@@ -25,7 +25,7 @@ pipeline {
     }   
 
     stages {
-        /*
+        
         stage('Setup Virtual Environment') {
             steps {
                 script {
@@ -213,7 +213,7 @@ pipeline {
                 }
             }
         }
-    */
+    
      stage('Notify Slack') {
             steps {
                 script {
