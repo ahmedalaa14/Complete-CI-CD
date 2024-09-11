@@ -11,7 +11,7 @@ pipeline {
         Trivy_Path = "/usr/bin/trivy"                       // Trivy path
         Grype_path = "/usr/local/bin/grype"                // Grype path
         Terrascan_path = "/usr/local/bin/terrascan"       // Terrascan path
-        Terraform_path  ="terraform"                     // Terraform path
+        Terraform_path = "terraform"                     // Terraform path
     }   
     stages {
         /*
@@ -100,7 +100,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "cd ${env.APP_PATH} && docker build -t ${env.Docker_Image}:${env.BUILD_NUMBER} . "
+                    sh "cd ${env.APP_PATH} && docker build -t ${env.Docker_Image}:${env.BUILD_NUMBER} ."
                 }
             }
         }
@@ -132,16 +132,15 @@ pipeline {
             }
         }
         */
-
         /*
         stage ('Scan Terraform Code with Terrascan') {
             steps {
                 script {
                     dir("${env.Terraform_path}") {
-                     sh """
-                     # Scan only .tf files and set IaC type to terraform
-                    find . -name "*.tf" | xargs ${env.Terrascan_path} scan -i terraform -d . > terrascan.txt
-                    """
+                        sh """
+                        # Scan only .tf files and set IaC type to terraform
+                        find . -name "*.tf" | xargs ${env.Terrascan_path} scan -i terraform -d . > terrascan.txt
+                        """
                     }
                 }
             }
@@ -149,27 +148,24 @@ pipeline {
                 always {
                     archiveArtifacts artifacts: 'terrascan.txt', fingerprint: true
                 }
-
             }
-            
         }
         */
-       stage ('Push Docker Image to DockerHub') {
+        stage ('Push Docker Image to DockerHub') {
             steps {
                 script {
                     /*
-                     withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
+                    withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
                         sh '''
                         #!/bin/bash
                         echo "${password}" | docker login -u "${username}" --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
                         '''
-                        */
-                    sh " # Login Suceessfully"
-
                     }
+                    */
+                    sh "# Login Successfully"
                 }
-             }
+            }
         }
         /*
         stage ('Deploy Infrastructure') {
@@ -185,5 +181,5 @@ pipeline {
             }
         }
         */
-    }   
+    }
 }
