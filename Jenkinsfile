@@ -154,7 +154,7 @@ pipeline {
        stage ('Push Docker Image to DockerHub') {
             steps {
                 script {
-                     withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"pass")]) {
+                     withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
                         sh """
                         echo $password | docker login -u $username --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
