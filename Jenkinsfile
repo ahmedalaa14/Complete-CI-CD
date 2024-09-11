@@ -107,7 +107,7 @@ pipeline {
         stage('Update Trivy DB and Scan Docker Image with Trivy') {
             steps {
                 script {
-                    sh "${env.Trivy_Path} image download-db only"
+                    sh "${env.Trivy_Path} image --download-db-only"
                     sh "${env.Trivy_Path} image --format table --no-progress -o trivy-report.txt ${env.Docker_Image}:${env.BUILD_NUMBER}"
                 }
             }
