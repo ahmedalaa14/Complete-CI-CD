@@ -22,6 +22,7 @@ pipeline {
         AWS_REGION = "eu-north-1"                                  // AWS Region
         EKS_CLUSTER_NAME = "team6-cluster"                        // EKS Cluster Name
     }   
+    
     stages {
         stage('Setup Virtual Environment') {
             steps {
