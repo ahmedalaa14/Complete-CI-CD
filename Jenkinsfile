@@ -1,28 +1,26 @@
 pipeline {
     agent any
     environment {
-        Docker_Image = "ahmedalaa14/flask-app-mini"                    // Docker Image Name       
-        Docker_Credential = "DockerHub-Credentail"                    // Docker ID  
-        Python_Path = "/usr/bin/python3"                             // Python 3 path
-        APP_PATH = "app"                                            // Application path
-        VENV_PATH = "venv"                                         // Virtual environment path
-        SONAR_SCANNER_HOME = tool name: 'sonarqube'               // SonarQube home path
-        OWASP_HOME = tool name: 'owasp'                          // OWASP Dependency Check home path
-        Trivy_Path = "/usr/bin/trivy"                           // Trivy path
-        Grype_path = "/usr/local/bin/grype"                    // Grype path
-        Terrascan_path = "/usr/local/bin/terrascan"           // Terrascan path
-        Terraform_path = "terraform"                         // Terraform path
-        AWS_Credential = "aws-credentails"                  // AWS Credential ID
-        Kubeconfig_Path = "${env.WORKSPACE}\\kubeconfig"   // Kubeconfig path
-        kubernetes_Path = "${env.WORKSOACE}\\kubernetes"  // Kubernetes path
-        monotring_Path = "${env.WORKSPACE}\\monitoring"  // Monitoring path
-        aws_cli_Path = "/usr/local/bin/aws"             // AWS CLI path
-        namespace = "library"                          // Namespace
-        kubectl_path = "/usr/local/bin/kubectl"       // Kubectl path
-    
+        Docker_Image = "ahmedalaa14/flask-app-mini"                                  // Docker Image Name       
+        Docker_Credential = "DockerHub-Credentail"                                  // Docker ID  
+        Python_Path = "/usr/bin/python3"                                           // Python 3 path
+        APP_PATH = "app"                                                          // Application path
+        VENV_PATH = "venv"                                                       // Virtual environment path
+        SONAR_SCANNER_HOME = tool name: 'sonarqube'                             // SonarQube home path
+        OWASP_HOME = tool name: 'owasp'                                        // OWASP Dependency Check home path
+        Trivy_Path = "/usr/bin/trivy"                                         // Trivy path
+        Grype_path = "/usr/local/bin/grype"                                  // Grype path
+        Terrascan_path = "/usr/local/bin/terrascan"                         // Terrascan path
+        Terraform_path = "terraform"                                       // Terraform path
+        AWS_Credential = "aws-credentails"                                // AWS Credential ID
+        Kubeconfig_Path = "${env.WORKSPACE}/kubeconfig"                  // Kubeconfig path
+        kubernetes_Path = "${env.WORKSPACE}/kubernetes"                 // Kubernetes path
+        monitoring_Path = "${env.WORKSPACE}/monitoring"                // Monitoring path
+        aws_cli_Path = "/usr/local/bin/aws"                           // AWS CLI path
+        namespace = "library"                                        // Namespace
+        kubectl_path = "/usr/local/bin/kubectl"                     // Kubectl path
     }   
     stages {
-        /*
         stage('Setup Virtual Environment') {
             steps {
                 script {
@@ -104,7 +102,6 @@ pipeline {
                 }
             }
         }
-        
         stage('Build Docker Image') {
             steps {
                 script {
@@ -112,7 +109,6 @@ pipeline {
                 }
             }
         }
-        
         stage('Update Trivy DB and Scan Docker Image with Trivy') {
             steps {
                 script {
@@ -139,9 +135,7 @@ pipeline {
                 }
             }
         }
-        */
-        /*
-        stage ('Scan Terraform Code with Terrascan') {
+        stage('Scan Terraform Code with Terrascan') {
             steps {
                 script {
                     dir("${env.Terraform_path}") {
@@ -158,82 +152,61 @@ pipeline {
                 }
             }
         }
-        */
-        stage ('Push Docker Image to DockerHub') {
+        stage('Push Docker Image to DockerHub') {
             steps {
                 script {
-                    /*
-                    withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
+                    withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username", passwordVariable:"password")]) {
                         sh '''
-                        #!/bin/bash
                         echo "${password}" | docker login -u "${username}" --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
                         '''
                     }
-                    */
-                    sh "# Login Successfully"
                 }
             }
         }
-        
-        stage ('Deploy Infrastructure') {
+        stage('Deploy Infrastructure') {
             steps {
                 script {
-                    /*
-                    dir("${env.Terraform_path}") {
-                        sh """
-                        terraform init
-                        terraform apply -auto-approve
-                        """
+                    withAWS(credentials: "${AWS_Credential}") {
+                        dir("${env.Terraform_path}") {
+                            sh """
+                            terraform init
+                            terraform apply -auto-approve
+                            """
+                        }
                     }
-                    */
-                    sh " # Infrastructure Deployed Successfully"
                 }
             }
         }
-        stage ('Update Kubecofig'){
+        stage('Update Kubeconfig') {
             steps {
                 script {
-                    /*
-                    withCredentials([usernamePassword(credentialsId: "${AWS_Credential}", usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    withAWS(credentials: "${AWS_Credential}") {
                         sh """
                         ${env.aws_cli_Path} eks update-kubeconfig --region ${env.AWS_REGION} --name ${env.EKS_CLUSTER_NAME} --kubeconfig ${env.Kubeconfig_Path}
                         """
-                }
-                */
-                sh "# Kubeconfig Updated Successfully"
+                    }
                 }
             }
         }
-        stage ('Deploy Kubernetes files to EKS') {
+        stage('Deploy Kubernetes files to EKS') {
             steps {
                 script {
-                    /*
                     sh """
                     ${env.kubectl_path} create namespace ${env.namespace}
                     ${env.kubectl_path} apply -f ${env.kubernetes_Path} --namespace ${env.namespace}
                     """
                 }
-                */
-                sh "# Kubernetes files Deployed Successfully"
-                }
             }
         }
-        stage ('Deploy Monitoring Grafana and Prometheus to eks') {
+        stage('Deploy Monitoring Grafana and Prometheus to EKS') {
             steps {
                 script {
-                    /*
                     sh """
                     ${env.kubectl_path} apply -f ${env.monitoring_Path} --namespace ${env.namespace}
                     """
                 }
-                */
-                sh "# Monitoring Deployed Successfully"
             }
         }
-
-        
-        
-    }
     }
 }
