@@ -14,7 +14,7 @@ pipeline {
         Terraform_path  ="terraform"                     // Terraform path
     }   
     stages {
-        
+        /*
         stage('Setup Virtual Environment') {
             steps {
                 script {
@@ -150,5 +150,32 @@ pipeline {
             }
             
         }
+        */
+        stage ('Push Docker Image to DockerHub') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: "${env.Docker_Credential}", variable: 'DOCKERHUB_PASSWORD')]) {
+                        sh """
+                        echo ${DOCKERHUB_PASSWORD} | docker login --username ${env.Docker_Credential} --password-stdin
+                        docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
+                        """
+                    }
+                }
+            }
+        }
+        /*
+        stage ('Deploy Infrastructure') {
+            steps {
+                script {
+                    dir("${env.Terraform_path}") {
+                        sh """
+                        terraform init
+                        terraform apply -auto-approve
+                        """
+                    }
+                }
+            }
+        }
+        */
     }   
 }
