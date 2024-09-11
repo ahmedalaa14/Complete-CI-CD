@@ -21,18 +21,19 @@ pipeline {
         kubectl_path = "/usr/local/bin/kubectl"                     // Kubectl path
         AWS_REGION = "eu-north-1"                                  // AWS Region
         EKS_CLUSTER_NAME = "team6-cluster"                        // EKS Cluster Name
+        slack_channel = "banque-misr"                           // Slack Channel
     }   
 
     stages {
         
-        stage ('slack'){
-            steps{
+        stage('Notify Slack') {
+            steps {
                 script {
-
-                sh "echo done"
+                    echo "Sending notification to Slack"
                 }
             }
         }
+    
         /*
         stage('Setup Virtual Environment') {
             steps {
