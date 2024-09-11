@@ -437,3 +437,68 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 ## Slack Notification
 
 ![Slack Notification](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Slack%20Notification.png)
+
+Local Machine (Development)
+┌───────────────────────────────────────────┐
+│ - Flask App (Python)                      │
+│ - Dockerized App (using Docker)           │
+│                                           │
+│ Pushed to Docker Hub:                     │
+│                                           │
+│   Local Machine ───────► Docker Hub       │
+└───────────────────────────────────────────┘
+
+──────────────────────────────────────────────────────────────────────
+
+Terraform (Infrastructure as Code)
+┌──────────────────────────────────────────────┐
+│                                              │
+│ Terraform ─────► AWS Cloud                    │
+│   (Creates: VPC, Subnets, EKS Cluster)        │
+└──────────────────────────────────────────────┘
+
+──────────────────────────────────────────────────────────────────────
+
+AWS Cloud (Main Infrastructure)
+┌───────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                               │
+│  AWS VPC (Virtual Private Cloud)                                                              │
+│  ┌──────────────────────────────────────────────────────────────────────────────────────────┐│
+│  │                                                                                          ││
+│  │  Public Subnet                                                                            ││
+│  │  ┌───────────────────────────┐          Private Subnet                                    ││
+│  │  │ Kubernetes Service        │          ┌───────────────────────────────────┐            ││
+│  │  │ (Load Balancer)           │◄─────────┤ EKS Cluster (Dockerized Flask App) │            ││
+│  │  └───────────────────────────┘          └───────────────────────────────────┘            ││
+│  │                                                                                          ││
+│  └──────────────────────────────────────────────────────────────────────────────────────────┘│
+│                                                                                               │
+│    Docker Hub ─────────► EKS Cluster (AWS EKS pulls Flask App Docker Image)                   │
+│                                                                                               │
+└───────────────────────────────────────────────────────────────────────────────────────────────┘
+
+──────────────────────────────────────────────────────────────────────
+
+Jenkins (CI/CD Pipeline Automation)
+┌──────────────────────────────────────────────────────────┐
+│                                                          │
+│ Jenkins ─────────► Docker Hub                             │
+│  (Automates: Build, Push Docker Image to Docker Hub)      │
+│                                                          │
+│ Jenkins ─────────► AWS EKS Cluster (via kubectl)          │
+│  (Deploys to EKS)                                         │
+└──────────────────────────────────────────────────────────┘
+
+──────────────────────────────────────────────────────────────────────
+
+Monitoring & Logging (Optional)
+┌───────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                               │
+│  Inside AWS Cloud (Private Subnet):                                                           │
+│                                                                                               │
+│  ┌──────────────────────────────────────┐   ┌───────────────────────────────────────┐        │
+│  │ Prometheus (Collects Metrics)         │◄──┤ Grafana (Displays Metrics, Dashboards) │        │
+│  └──────────────────────────────────────┘   └───────────────────────────────────────┘        │
+│                                                                                               │
+│  EKS Cluster ─────────► Prometheus                                                       │
+└───────────────────────────────────────────────────────────────────────────────────────────────┘
