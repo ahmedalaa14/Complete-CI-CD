@@ -21,7 +21,7 @@ pipeline {
         kubectl_path = "/usr/local/bin/kubectl"                     // Kubectl path
         AWS_REGION = "eu-north-1"                                  // AWS Region
         EKS_CLUSTER_NAME = "team6-cluster"                        // EKS Cluster Name
-        slack_channel = "banque-misr"                           // Slack Channel
+        slack_channel = "banque-misr"                            // Slack Channel Name
     }   
 
     stages {
