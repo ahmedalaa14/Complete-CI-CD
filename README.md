@@ -1,7 +1,8 @@
 # Banque Misr Graduation Project.
   
 ## Project Overview
-- The Library Management System is a robust application developed using Flask. It provides a comprehensive solution for managing a library's catalogue. The system allows users to add new books to the library, view a list of all available books, borrow a book, search for a specific book, and return a borrowed book. With its user-friendly interface and efficient search capabilities, it streamlines the process of library management and enhances the user experience.
+- The Library Management System is a sophisticated application developed using Flask. It serves as a complete solution for managing a library's catalogue. The system enables users to add new books to the library, view a list of all available books, borrow a book, search for a specific book, and return a borrowed book. With its intuitive interface and efficient search capabilities, it simplifies library management and enhances user experience. The project also incorporates a comprehensive DevOps pipeline for continuous integration, continuous deployment, infrastructure management, monitoring, and alerting.
+
 
 ## Technologies
 - **Flask**: A lightweight WSGI web application framework used to implement the application.
