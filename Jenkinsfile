@@ -132,7 +132,7 @@ pipeline {
             }
         }
         */
-        
+
         /*
         stage ('Scan Terraform Code with Terrascan') {
             steps {
@@ -159,7 +159,7 @@ pipeline {
                 script {
                      withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
                          sh '''
-                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+                        echo "$PASSWORD" | docker login -u "$username" --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
                         '''
                         
