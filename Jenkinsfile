@@ -155,11 +155,12 @@ pipeline {
             steps {
                 script {
                      withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
-                        sh '''
-                        # Use bash explicitly to avoid compatibility issues
-                        /bin/bash -c "echo '${password}' | docker login -u '${username}' --password-stdin"
+                         sh """
+                        echo ${password} > pwd.txt
+                        cat pwd.txt | docker login -u $username --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
-                        '''
+                        rm pwd.txt
+                        """
                     }
                 }
              }
