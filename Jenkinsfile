@@ -151,17 +151,17 @@ pipeline {
             
         }
         */
-        stage ('Push Docker Image to DockerHub') {
+       stage ('Push Docker Image to DockerHub') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: "${env.Docker_Credential}", variable: 'DOCKERHUB_PASSWORD')]) {
+                     withCredentials([usernamePassword(credentialsId: "${env.Docker_Credential}", usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         sh """
-                        echo ${DOCKERHUB_PASSWORD} | docker login --username ${env.Docker_Credential} --password-stdin
+                        echo ${DOCKERHUB_PASSWORD} | docker login --username ${DOCKERHUB_USERNAME} --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
                         """
                     }
                 }
-            }
+             }
         }
         /*
         stage ('Deploy Infrastructure') {
