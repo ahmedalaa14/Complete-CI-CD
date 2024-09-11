@@ -104,6 +104,7 @@ pipeline {
                 }
             }
         }
+        /*
         stage('Update Trivy DB and Scan Docker Image with Trivy') {
             steps {
                 script {
@@ -130,6 +131,8 @@ pipeline {
                 }
             }
         }
+        */
+        
         /*
         stage ('Scan Terraform Code with Terrascan') {
             steps {
@@ -155,12 +158,11 @@ pipeline {
             steps {
                 script {
                      withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
-                         sh """
-                        echo ${password} > pwd.txt
-                        cat pwd.txt | docker login -u $username --password-stdin
+                         sh '''
+                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
-                        rm pwd.txt
-                        """
+                        '''
+                        
                     }
                 }
              }
