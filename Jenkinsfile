@@ -13,16 +13,16 @@ pipeline {
         Terrascan_path = "/usr/local/bin/terrascan"                         // Terrascan path
         Terraform_path = "terraform"                                       // Terraform path
         AWS_Credential = "aws-credentails"                                // AWS Credential ID
-        Kubeconfig_Path = "${env.WORKSPACE}/kubeconfig"                  // Kubeconfig path
-        kubernetes_Path = "${env.WORKSPACE}/kubernetes"                 // Kubernetes path
-        monitoring_Path = "${env.WORKSPACE}/monitoring"                // Monitoring path
+        Kubeconfig_Path = "${env.WORKSPACE}//kubeconfig"                  // Kubeconfig path
+        kubernetes_Path = "${env.WORKSPACE}//kubernetes"                 // Kubernetes path
+        monitoring_Path = "${env.WORKSPACE}//monitoring"                // Monitoring path
         aws_cli_Path = "/usr/local/bin/aws"                           // AWS CLI path
         namespace = "library"                                        // Namespace
         kubectl_path = "/usr/local/bin/kubectl"                     // Kubectl path
         AWS_REGION = "eu-north-1"                                  // AWS Region
         EKS_CLUSTER_NAME = "team6-cluster"                        // EKS Cluster Name
     }   
-    
+
     stages {
         stage('Setup Virtual Environment') {
             steps {
