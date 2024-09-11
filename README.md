@@ -417,3 +417,7 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 
 ![DockerHub](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Docker%20Push%20to%20DockerHub.png)
 
+
+## Grafana on EKS
+
+![Grafana Eks](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Geafana%20Eks.png)
