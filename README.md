@@ -392,3 +392,23 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 - Terrascan Summary: Terrascan is a comprehensive tool used for scanning Infrastructure as Code (IaC) for security vulnerabilities and compliance issues. Detailed results of each Terrascan scan are stored in the `terrascan.txt` file.
 
 ![TerraScan](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Terrascan%20.png)
+
+## CD Stages
+
+- the stages of the Continuous Deployment (CD) pipeline used for deploying Docker images and managing infrastructure with Terraform and Deploy Kubernetes Files and Monitoring Files to EKS.
+
+## Key Stages
+
+- **Push Docker Image to DockerHub**:  Authenticates and pushes Docker images to DockerHub with a build-specific tag.
+
+- **Deploy Infrastructure**: Initializes and applies Terraform configurations to deploy the infrastructure.
+
+- **Update Kubeconfig**:  Updates the kubeconfig file to interact with the EKS cluster.
+
+- **Deploy Kubernetes Files to EKS**: Creates the necessary Kubernetes namespace and applies configuration files to deploy the application.
+
+- **Deploy Monitoring Grafana and Prometheus to EKS**:  Deploys monitoring tools such as Grafana and Prometheus to the EKS cluster.
+
+## Continous Deployment Pipeline 
+
+![CD-Stages](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/CD%20-%20Stages.png)
