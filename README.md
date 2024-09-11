@@ -361,6 +361,7 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
   - **Docker Image Scanning**: Scans Docker images for vulnerabilities using Trivy and Grype.
   - **Infrastructure Scanning**: Scans Terraform code for compliance using Terrascan.
 - **Docker Image Build**: Builds and tags a Docker image for the Flask application.
+- **Sending Notification to Slack**: Utilizes Slack notifications for real-time updates on the CI/CD pipeline status after each Jenkins job, indicating success or failure.
 
 # Continous Integration Pipeline 
 
@@ -432,3 +433,7 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 ![Grafana On Eks](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Garafana%20on%20EKS.png)
 
 ![Grafana Eks](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Geafana%20Eks.png)
+
+## Slack Notification
+
+![Slack Notification](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Slack%20Notification.png)
