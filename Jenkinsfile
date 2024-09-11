@@ -187,6 +187,7 @@ pipeline {
             steps {
                 script {
                     withAWS(credentials: "${AWS_Credential}") {
+                        // All AWS steps inside this block can use the provided credentials
                         sh """
                         ${env.aws_cli_Path} eks update-kubeconfig --region ${env.AWS_REGION} --name ${env.EKS_CLUSTER_NAME} --kubeconfig ${env.Kubeconfig_Path}
                         """
