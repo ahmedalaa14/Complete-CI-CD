@@ -165,7 +165,7 @@ pipeline {
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
                         '''
                         */
-                    # Login Suceessfully
+                    sh " # Login Suceessfully"
 
                     }
                 }
