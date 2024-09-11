@@ -24,6 +24,15 @@ pipeline {
     }   
 
     stages {
+        
+        stage ('slack'){
+            steps{
+                script {
+
+                sh "echo done"
+                }
+            }
+        }
         /*
         stage('Setup Virtual Environment') {
             steps {
