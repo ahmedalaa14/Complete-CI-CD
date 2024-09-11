@@ -14,7 +14,7 @@ pipeline {
         Terraform_path  ="terraform"                     // Terraform path
     }   
     stages {
-        
+        /*
         stage('Setup Virtual Environment') {
             steps {
                 script {
@@ -96,7 +96,7 @@ pipeline {
                 }
             }
         }
-        
+        */
         stage('Build Docker Image') {
             steps {
                 script {
@@ -107,7 +107,6 @@ pipeline {
         stage('Update Trivy DB and Scan Docker Image with Trivy') {
             steps {
                 script {
-                    sh "${env.Trivy_Path} image --download-db-only"
                     sh "${env.Trivy_Path} image --format table --no-progress -o trivy-report.txt ${env.Docker_Image}:${env.BUILD_NUMBER}"
                 }
             }
@@ -157,7 +156,7 @@ pipeline {
                 script {
                      withCredentials([usernamePassword(credentialsId: "DockerHub-Credentail", usernameVariable:"username",passwordVariable:"password")]) {
                         sh """
-                        echo $password | docker login -u $username --password-stdin
+                        echo ${password} | docker login -u $username --password-stdin
                         docker push ${env.Docker_Image}:${env.BUILD_NUMBER}
                         """
                     }
