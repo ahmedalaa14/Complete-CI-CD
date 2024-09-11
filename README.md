@@ -418,6 +418,16 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 ![DockerHub](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Docker%20Push%20to%20DockerHub.png)
 
 
+# Deploy App to Eks
+
+![App on Eks](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Application%20on%20Eks.png)
+
+# Prometheus Deployment to EKS
+
+![Prometheus on Eks](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Promethues%20EKS.png)
+
 ## Grafana on EKS
+
+![Grafana On Eks](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Garafana%20on%20EKS.png)
 
 ![Grafana Eks](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Geafana%20Eks.png)
