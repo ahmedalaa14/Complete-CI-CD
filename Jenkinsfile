@@ -25,15 +25,6 @@ pipeline {
     }   
 
     stages {
-        
-        stage('Notify Slack') {
-            steps {
-                script {
-                    echo "Sending notification to Slack"
-                }
-            }
-        }
-    
         /*
         stage('Setup Virtual Environment') {
             steps {
@@ -223,14 +214,20 @@ pipeline {
             }
         }
     */
-    post{
-        failure {
-           slacksend (channel: "${env.slack_channel}" , color: '#FF0000' , message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-        }
-        success {
-           slacksend (channel: "${env.slack_channel}" , color: '#00FF00' , message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-
+    stage('Notify Slack') {
+    steps {
+        script {
+            echo "Sending notification to Slack"
         }
     }
+    post {
+        failure {
+            slacksend (channel: "${env.slack_channel}", color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+        success {
+            slacksend (channel: "${env.slack_channel}", color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+    }
+}
     }
 }
