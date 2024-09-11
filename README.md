@@ -22,6 +22,7 @@
    ```bash
    git clone https://github.com/ahmedalaa14/Complete-CI-CD
    cd Complete-CI-CD
+   cd app
    ```
 
 2. **Install Python dependencies**:
@@ -199,6 +200,7 @@ kubectl apply -f kubernetes/
 1. Clone the repository:
 ```
 git clone https://github.com/ahmedalaa14/Complete-CI-CD.git
+cd terraform
 ```
 2. Initialize Terraform:
 ```
