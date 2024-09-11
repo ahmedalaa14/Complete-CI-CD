@@ -338,11 +338,11 @@ minikube service grafana-service -n library
 aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 ```
 
-- Prometheus Deployment On EKS.
+- Prometheus Deployment.
 
 ![Promerhus Deployment](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Promethus%20Deployment.png)
 
-- Grafana Dashboard on EKS.
+- Grafana Dashboard.
 
 ![Grafana Dashboard](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Grafana%20Dashboard.png)
 
