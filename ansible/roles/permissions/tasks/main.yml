@@ -46,13 +46,3 @@
     group: trivy
     mode: '0755'
 
-- name: Record paths of installed tools
-  shell: |
-    echo "Terraform: $(which terraform)" > /home/ubuntu/ahmed.txt
-    echo "AWS CLI: $(which aws)" >> /home/ubuntu/ahmed.txt
-    echo "kubectl: $(which kubectl)" >> /home/ubuntu/ahmed.txt
-    echo "Trivy: $(which trivy)" >> /home/ubuntu/ahmed.txt
-    echo "Jenkins: $(which jenkins)" >> /home/ubuntu/ahmed.txt
-    echo "Jenkins initialAdminPassword: $(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)" >> /home/ubuntu/ahmed.txt
-  args:
-    executable: /bin/bash
