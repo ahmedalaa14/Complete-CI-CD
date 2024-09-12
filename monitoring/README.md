@@ -4,7 +4,7 @@
 
 # Architecture 
 
-- Architecture Prometheus - Grafana:
+- Architecture Prometheus - Grafana :
 
 ![Architecture Prometheus - Grafana](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Architecture%20Prometheus%20-%20Grafana.png)
 
@@ -15,7 +15,7 @@
 
 ## Deployment
 
-- To deploy Prometheus and Grafana, follow these steps:
+- To deploy Prometheus and Grafana, follow these steps :
 
 1. Clone this repository:
 
@@ -24,14 +24,14 @@ git clone https://github.com/ahmedalaa14/Complete-CI-CD.git
 cd monitoring
 ```
 
-2. Apply the Kubernetes manifests:
+2. Apply the Kubernetes manifests :
 ```bash
 kubectl apply -f prometheus.yaml
 kubectl apply -f grafana.yaml
 ```
 
 ## Accessing the Services
-- After deployment, you can access the services as follows:
+- After deployment, you can access the services as follows :
 
 Prometheus: Run 
 ```bash 
