@@ -291,11 +291,6 @@ Replace <EC2-instance-IP> with the actual IP address of your EC2 instance.
 - Prometheus and Grafana Deployment.
 
 # Architecture 
-- General Architecture:
-![General Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/general_arch.png)
-
-- CI Architecture:
-![CI Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/CI_ARCH.png)
 
 - Architecture Prometheus - Grafana:
 ![Architecture Prometheus - Grafana](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Architecture%20Prometheus%20-%20Grafana.png)
@@ -351,6 +346,12 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 
 
 ## Jenkins Pipeline 
+
+- General Architecture:
+![General Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/general_arch.png)
+
+- Jenkins Pipeline Architecture:
+![CI Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/CI_ARCH.png)
 
 # CI Stages 
 - This Jenkins pipeline automates the build, testing, security scanning, and deployment process for a Flask application. It includes several stages for ensuring code quality and security compliance, leveraging tools like SonarQube, OWASP Dependency Check, Trivy, Grype, and Terrascan.
