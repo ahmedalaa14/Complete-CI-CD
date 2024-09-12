@@ -3,7 +3,6 @@
 ## Project Overview
 - The Library Management System is an application developed using Python and Flask, designed to streamline the management of a library's catalogue. The system allows users to add, view, search, borrow, and return books with ease. A key feature of this project is its robust DevOps pipeline, which supports continuous integration, continuous deployment, infrastructure automation, monitoring, and alerting, ensuring seamless updates and efficient operations across environments.
 
-
 ## Technologies
 - **Flask**: A lightweight WSGI web application framework used to implement the application.
 - **Docker**: Used for creating, deploying, and running the application using containerization.
@@ -292,9 +291,13 @@ Replace <EC2-instance-IP> with the actual IP address of your EC2 instance.
 - Prometheus and Grafana Deployment.
 
 # Architecture 
+- General Architecture:
+![General Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/general_arch.png)
+
+- CI Architecture:
+![CI Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/CI_ARCH.png)
 
 - Architecture Prometheus - Grafana:
-
 ![Architecture Prometheus - Grafana](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Architecture%20Prometheus%20-%20Grafana.png)
 
 ## Prerequisites
