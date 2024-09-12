@@ -448,3 +448,7 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 
 
 ![Slack Notification](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Slack%20Notification.png)
+
+# Jenkins Shared Library 
+
+- I have previously created an example of a Jenkins Shared Library. You can find it at the following link: [Jenkins Shared Library Example](https://github.com/ahmedalaa14/jenkins-shared-library)
