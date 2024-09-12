@@ -348,9 +348,11 @@ aws eks update-cluster-config --region eu-north-1 --name team6-cluster
 ## Jenkins Pipeline 
 
 - General Architecture:
+
 ![General Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/general_arch.png)
 
 - Jenkins Pipeline Architecture:
+
 ![CI Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/CI_ARCH.png)
 
 # CI Stages 
