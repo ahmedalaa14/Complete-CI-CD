@@ -291,9 +291,13 @@ Replace <EC2-instance-IP> with the actual IP address of your EC2 instance.
 - Prometheus and Grafana Deployment.
 
 # Architecture 
+- General Architecture:
+![General Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/general_arch.png)
+
+- CI Architecture:
+![CI Architecture](https://github.com/ahmedalaa14/Complete-CI-CD/blob/main/images/CI_ARCH.png)
 
 - Architecture Prometheus - Grafana:
-
 ![Architecture Prometheus - Grafana](https://github.com/ahmedalaa14/Complete-CI-CD---DevOps/blob/main/images/Architecture%20Prometheus%20-%20Grafana.png)
 
 ## Prerequisites
